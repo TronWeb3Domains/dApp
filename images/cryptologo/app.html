@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="UTF-8"> 
+<meta http-equiv="encoding" content="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta content="width=device-width, initial-scale=1" name="viewport" id="viewport" runat="server" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0"/>
+<meta property="og:image" itemprop="image" content="/images/iotexdomains.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lobibox@1.2.7/css/lobibox.css" />
+<link type="text/css" rel="stylesheet" href="/fonts/Fontawesome-pro/css/fontawesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/fonts/Fontawesome-pro/css/all.css" />
+<link type="text/css" rel="stylesheet" href="/fonts/Montserrat/fonts.css" />
+<link type="text/css" rel="stylesheet" href="/lib/jQuery/PluginStack/Wow-js/animate.css" />
+<link type="text/css" rel="stylesheet" href="/css/custom.css?v=123" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0-rc.5/dist/web3.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootbox@5.5.2/bootbox.all.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
+<script type="text/javascript" src="/lib/jQuery/PluginStack/Wow-js/wow.min.js"></script>
+<script type="text/javascript" src="/js/custom.js?v=4"></script>
+<script type="text/javascript" src="/networks.js?v=100"></script>
+<link rel="icon" href="/favicon/favicon-32x32.png?v=1" />
+<link rel="shortcut icon" href="/favicon/favicon-32x32.png?v=1" />
+<title>IoTeX Web3 Domains - Building Identity on blockchain with .iotx domain</title>
+<meta name="description" content="Building Identity on blockchain with .iotx domain" />
+<style>
+
+.warp-search{
+	margin: 0 auto;
+}
+.warp-result .text-success{
+	color: #0c8d75!important;
+}
+.warp-result .btn-success {
+	background-color: #0c8d75!important;
+	border-color: #0c8d75!important;
+}
+.btn-outline-success
+{
+	border: 1px solid #0c8d75!important;
+	color: #0c8d75!important;
+}
+.loading {color: #0c8d75!important;}
+
+.btn-outline-success:hover
+{
+	background-color: #0c8d75!important;
+	color: #FFF!important;
+}
+.warp-result{
+	padding-top: 20px;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+.tld
+{
+	display:none;
+}
+.select-chain {
+	font-size: 13px;
+}
+
+.btn-connect-wallet:hover{
+	color: #FFF!important;
+}
+
+.select-chain .dropdown-toggle{
+	color: #FFF;
+	cursor: pointer;
+	border-radius: 30px;
+	border: 1px solid #DDD;
+	padding: 11px 20px;
+	background: rgb(0 0 0 / 10%);
+}
+.select-chain .dropdown-menu{
+	top: 12px!important;
+}
+
+.select-chain .dropdown-menu:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: -7px;
+    left: 9px;
+}
+
+.select-chain .dropdown-menu:after {
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    position: absolute;
+    top: -6px;
+    left: 10px;
+}
+
+.select-chain .list-item
+{
+	display: block;
+	padding: 12px;
+	border-bottom: 1px solid #DDD;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.select-chain .list-item-active
+{
+	font-weight: bold;
+}
+
+.select-chain .list-item:last-child
+{
+	border-bottom: none;
+}
+
+.chain-logo{
+	width: 20px; 
+	margin-right: 10px;
+	margin-top: -5px;
+}
+
+.result-search {
+	background-color: rgb(255, 255, 255);
+	overflow: hidden;
+	border-radius: 6px;
+	-webkit-box-align: center;
+	align-items: center;
+	padding: 30px;
+	margin: 0 auto;
+}
+.result-details .alert-info{
+	background: #FFF;
+}
+.pricelist{
+	max-width: 400px;
+	margin: 0 auto;
+}
+.preview {
+	position: relative;
+	background: linear-gradient(45deg, #a061d0, #30d5c2);
+	border-radius: 5px;
+	
+}
+.preview .domainhere{
+	position: absolute;
+    top: 50%;
+    left: 50px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 25px;
+	word-wrap: break-word;
+}
+.result-select {
+	padding:10px;
+	margin: 0px auto;
+}
+
+.domain-item {
+	display: inline-block;
+	padding: 15px;
+	border: 1px solid #DDD;
+	border-radius: 10px;
+	margin: 7px;
+	text-align: center;
+	cursor: pointer;
+}
+.result-select .active{
+	border: 2px solid #CCC!important;
+}
+.domain-item-name{
+	font-weight: bold;
+	font-size: 20px;
+	display: block;
+}
+
+.domain-item-status{
+	font-weight: bold;
+	display: block;
+	font-size: 20px;
+}
+
+
+.result-common{
+	text-align: left;
+}
+.result-details{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 12px;
+}
+.result-logo{
+	margin-right: 7px;
+}
+.result-logo img{
+	max-width: 40px;
+	margin-top: -5px;
+}
+.result-domain{
+    font-weight: 700;
+    font-size: 18px;
+}
+.result-status{
+	float: right;
+	margin-top: 5px;
+}
+.result-status span{
+	margin-left:7px;
+}
+.result-statustext{
+	font-weight: bold;
+}
+.pricelistwarp{
+	background: #FFF;
+}
+.result-price{
+	padding:15px; font-size: 20px; font-weight: bold;
+}
+.pricelist{
+	font-size: 15px;
+}
+.level-item{
+	display: flex;
+    align-items: center;
+    padding-bottom: 7px;
+    justify-content: space-between;
+}
+.level-price {
+	font-weight: bold;
+}
+.warp-mydomains{
+	margin-top: 50px;
+    margin: 0 auto;
+}
+
+.mydomains{
+	margin: 0 auto;
+	border-radius: 6px;
+	margin: 0 auto;
+	padding: 30px;
+	background-color: rgb(255, 255, 255);
+}
+
+.mydomain-show{
+	margin-top:20px;
+	display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.mydomain-name
+{
+	font-weight: bold; 
+	padding: 10px;
+	word-break: break-all;
+	line-height: 1.2;
+	margin-top: 5px;
+}
+
+.mydomain-item{
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #ced4da;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+	padding:10px;
+	text-align: center;
+}
+
+.warp-setavatar
+{
+	margin:20px;
+}
+
+.warp-setavatar .setavatar
+{
+	width: 500px; height: 500px;
+	background: linear-gradient(45deg, #a061d0, #30d5c2);
+	background-position: center center;
+	position: relative;
+	margin: 0 auto;
+}
+.warp-setavatar .setdomain{
+	position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    font-weight: bold;
+    font-size: 30px;
+    word-wrap: break-word;
+	z-index: 3;
+}
+
+.warp-setavatar .setselectimage{
+	position: absolute;
+	bottom: 20px;
+    right: 20px;
+	z-index: 2;
+}
+
+.warp-setavatar .setyoupic{
+	position: absolute;
+	top: 0;
+    left: 0;
+	z-index: 1;
+	width: 500px;
+	height: 500px;
+	overflow: hidden;
+}
+
+
+.warp-setavatar .btn-file{
+	position: relative;
+	padding-top: 15px;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.warp-setavatar input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;			
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+}
+.warp-setavatar .btn-confirm-avatar{
+	width: 500px; 
+	margin-top: 20px; 
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.modal-open .modal {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-dialog {
+        width: 600px;
+        font-size: 14px;
+    }
+
+div[data-notify="container"] { 
+    width: auto; 
+	margin-left: 30px;
+}
+
+</style>
+</head>
+<body>
+<div class="warp-header" id="home">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-12">
+				<div class="logo">
+					<a href="/"><img src="/logo/logo_cic.png?v=3"/></a>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-10 col-xs-12 text-mg-right">
+				<div class="menu" style="display:none;">
+					<ul class="nav">
+						<li class="nav-item active"><a data-id="#home" href="/">Home</a></li>
+						<li class="nav-item"><a href="#claim">Claim Domain</a></li>
+						<li class="nav-item"><a data-id="#features" href="#">Features</a></li>
+						<li class="nav-item"><a data-id="#faq" href="#">FAQ</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="click-menu">
+		<i class="fal fa-bars"></i>
+	</div>
+</div>
+<div class="warp-banner text-center">
+	<div class="banner-fix">
+		<div class="warp-search" style="position:relative;z-index:2;">
+			<div class="banner-nofix">
+				<div class="container">
+					<div class="menu-btn" style="margin-bottom: 20px;">
+						<span class="dropdown select-chain" style='display:none;'>
+							<span class="dropdown-toggle" data-toggle="dropdown" href="#"><span class='selected-chain'>Select Chain</span></span>
+							<ul class="dropdown-menu">
+							</ul>
+						</span>
+						<span class="btn btn-lg btn-custom btn-connect-wallet" style="cursor:pointer;">
+							<i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i> Connect Wallet
+						</span>
+						<input type="hidden" class="currentAddress" />
+					</div>
+					<div class="alert alert-danger text-center not-support" style="display:none; width:600px; margin:0 auto; margin-bottom: 20px;" role="alert">
+					  <span>
+						Network is not currently supported. Please click button below.<br/>
+						<span style="cursor: pointer; margin-top: 10px;" class="btn btn-outline-danger btn-changenetwork">Change Network</span>
+					  </span>
+					</div>
+					<div class="class-body">
+						<div class="form-search input-group">
+						<input type="text" class="form-control form-control-lg txtdomain" placeholder="Search for a domain"/>
+						<div class="input-group-append">
+							<span class='tld'>.</span>
+							<span class="btn btn-default btn-success btn-outline-secondary btn-search" style="cursor:pointer;"><i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i>Search <i class="far fa-arrow-right"></i></span>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="warp-result">
+				<div class="container">
+					<div class="result-search" style="display:none;">
+					<div class='result-select'></div>
+					<div class="result-common">
+							<span class='result-logo'></span>
+							<span class='result-domain'></span>
+							<span class='result-status'>
+								<span class='result-chain' style='display:none;'></span>
+								<span class='result-statustext'></span>
+							</span>
+					</div>
+					<div class="result-details" style="display:none;">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class=''>
+									<div class='pricelist'></div>
+									<div class='pricelistwarp'>
+										<div class='result-price text-center'></div>
+									</div>
+								</div>
+								<span style="cursor: pointer; padding:15px; font-weight: bold; font-size: 17px;" class='btn btn-block btn-lg btn-success btn-buy'><i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i>Mint Now </span>
+							</div>
+							<div style='display:none;' class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+								<div class='preview'>
+									<img src='/NFTDomains/bg.png' />
+									<div class="domainhere"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			   </div>
+			</div>
+			<div class="warp-mydomains" style="display:none;">
+			<div class="container">
+				<div class="mydomains">
+					<h4 class='title-support strong'>Registered <span class='total-domains'></span> domains </h4>
+					<div class='text-right'><span style="cursor:pointer;" class='btn btn-sm btn-outline-success btn-mydomain-refresh'>Update List</span></div>
+				
+					<div class='loading text-center' style='display:none; color:#70d44b'><i class='fas fa-4x fa-spinner fa-spin'></i></div>
+					<div class='mydomain-show'></div>
+				</div>
+			</div>
+	  </div>
+		</div>
+	</div>
+</div>
+
+<div class="warp-section warp-footer">
+	<div class="container text-center">
+		<div class="warp-social">
+			<a href="https://twitter.com/iotexdomains" target="_blank" class="wow fadeInUp"><i class="fab fa-twitter"></i></a>
+			<a href="#" target="_blank" class="wow fadeInUp"><i class="fab fa-github"></i></a>
+			<a href="#" class="wow fadeInUp"><i class="fab fa-discord"></i></a>
+		</div>
+		<div class="warp-copyright">
+			Copyright © 2022 IoTex Domains. All Rights Reserved<br/>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	var currentNetwork;
+	
+	var contractFirst;
+	
+	var currentAddress;
+	
+	var domainReverse = '';
+	
+	var clickenble = true;
+	
+	var isConnection = false;
+	
+	window.addEventListener('load', async () => {
+		//await connect();
+    });
+	
+	$(document).on('click', '.btn-connect-wallet', async() => {
+		await connect();
+    });
+	
+
+	$(document).on('keyup', '.txtdomain', function(){
+		var str = $(this).val().trim().toLowerCase();
+		str = fixDomain(str);
+		$(this).val(str);
+    });
+
+	const networkUI = () => {
+		if (networks.length > 0){
+			var temp = '';
+			$.each(networks, function(index, network){
+				if (network.visible == true){
+					temp += "<li class='list-item' data-chain='" + network.chain.toLowerCase() + "'><span><img class='chain-logo' src='" + network.logo + "' /><span class='chain-name'>" + network.chain.toUpperCase() + "</span></span></li>";
+				}				 
+			});
+			
+			$('.dropdown-menu').html(temp);
+			
+			$(document).on('click', '.list-item', function()
+			{
+				$('.list-item').removeClass('list-item-active');
+				
+				$(this).addClass('list-item-active');
+				
+				var text = $(this).html();
+				
+				$('.selected-chain').html(text);
+				
+				var chain = $(this).attr('data-chain');
+				
+				changeNetwork(chain);
+			});
+		}
+	};
+	
+	networkUI();
+	
+	$(document).on('click', '.btn-changenetwork', function(){
+		var chain = 'iotex';
+		changeNetwork(chain);
+    });
+	
+	const disconnect =  async () => {
+		if (!window.ethereum) {
+			notify('alert-danger', '<span class="text-danger">No Metamask (or other Web3 Provider) installed</span>');
+			return;
+		}
+		//ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
+		
+		const walletAddress = await window.ethereum.request({
+		  method: "eth_requestAccounts",
+		  params: [
+			{
+			  eth_accounts: {}
+			}
+		  ]
+		});
+		
+		$('.btn-connect-wallet').text('Connect Wallet');
+		
+		$('.btn-connect-wallet').removeClass('wallet-connected');
+		
+		$('.btn-connect-wallet').removeAttr('disabled');
+		
+		isConnection = false;
+		
+		$('.result-search').hide();
+		
+		$('.warp-mydomains').hide();
+
+	};
+	
+	const connect =  async () => {
+		if (!window.ethereum) {
+			notify('alert-danger', '<span class="text-danger">No Metamask (or other Web3 Provider) installed</span>');
+			return;
+		}
+		
+		if (isConnection == true){
+			return;
+		}
+		
+		$('.tld').text('');
+		
+		$('.not-support').hide();
+		
+		$('.btn-connect-wallet i.fa-spin').show();
+		
+		$('.btn-connect-wallet').attr('disabled', true);
+		
+		window.web3 = new Web3(ethereum);
+		
+		try {
+			  window.ethereum.on('chainChanged', () => {
+			  	  document.location.reload();
+			  });
+			  
+			  window.ethereum.on('accountsChanged', () => {
+			  	  document.location.reload();
+			  });
+			  
+			  await ethereum.enable();
+			  
+			  const chainId = await web3.eth.net.getId();
+			  
+			  currentNetwork = getObjects(networks, "chainId", chainId)[0];
+			  
+			  if (currentNetwork == null || currentNetwork.visible == false)
+			  {
+					$('.not-support').show();
+					notify('alert-danger', '<span class="text-danger">The network is not currently supported</span>');
+					return;
+			  }
+			  
+			  if (currentNetwork.contactAddress == null){
+					notify('alert-danger', "<span class='text-danger>This contract object doesn't have address set yet, please set an address first.</span>");
+					return;
+			  }
+			  
+			  var chain = currentNetwork.chain;
+			  
+			  $('.list-item').each(function(){
+					var _chain = $(this).attr('data-chain');
+					if (_chain == chain.toLowerCase()){
+						$(this).click();
+						return;
+					}
+			  });
+
+			  var abi = await fetchABI();
+			
+			  try{
+				  contractFirst = new web3.eth.Contract(
+								  abi,
+								  currentNetwork.contactAddress
+				  );
+			  }catch(e){
+				notify('danger', '<span class="text-danger">' + e.toString() + '</span>');
+				//return;
+			  }
+			  
+			  if (contractFirst == null)
+			  {
+					notify('alert-danger', '<span class="text-danger">Contract address not yet supported</span>');
+					return;
+			  }
+			  
+			  notify('alert-success', 'Successfully connected your wallet');
+			  
+			  $('.tld').text(currentNetwork.tld);
+			   
+			  $('.not-support').hide();
+			  
+			  var _currentAddress = await web3.eth.getAccounts();
+			  
+			  currentAddress = _currentAddress.toString();
+			  
+			  var _balance = await web3.eth.getBalance(currentAddress);
+			  
+			  balance = parseFloat(web3.utils.fromWei(_balance)).toFixed(3);
+			  
+			  // check reverseOf
+			  try{
+				domainReverse = await contractFirst.methods.reverseOf(currentAddress).call();
+			  }catch{}
+			  
+			  
+			  var text = domainReverse;
+			  
+			  if (domainReverse == '')
+			  {
+				  for (let i = 0; i < 6; i++) {
+						text += currentAddress[i];
+				  }
+							
+				  text += '...'
+				  
+				  for (let i = currentAddress.length - 4; i < currentAddress.length; i++) {
+					text += currentAddress[i];
+				  }
+			  }
+
+			  text += ' (' + balance + ' ' + currentNetwork.nativeCurrency.symbol + ')';
+					
+			  text += " <i class='fas fa-copy btn-copy' title='Copy address to clipboard' style='cursor:pointer; margin-left:5px;'></i>";
+			  text += " <i class='fas fa-sign-out btn-disconnect' title='Disconnect' style='cursor:pointer; margin-left:5px;'></i>";
+					
+			  $('.btn-connect-wallet').html(text).addClass('wallet-connected').prop('disabled', true).css('cursor','default');
+			  
+			  $('.btn-connect-wallet  i.fa-spin').hide();
+			  
+			  preInit();
+			  
+			  isConnection = true;
+			  
+		} catch (err) {
+			notify('alert-danger', '<span class="text-danger">Error: ' + err.toString() + '</span>');
+			
+			$('.btn-connect-wallet i.fa-spin').hide();
+		
+			$('.btn-connect-wallet').removeAttr('disabled');
+		}
+	};
+	
+
+	const changeNetwork = async (networkName) => {
+		if (!window.ethereum) {
+			return;
+		}
+		
+		const network = getObjects(networks, "chain", networkName)[0];
+		try {
+		  await window.ethereum.request({
+			method: 'wallet_switchEthereumChain',
+			params: [{ chainId: web3.utils.toHex(network.chainId) }],
+		  });
+		} catch (e) {
+		  if (e.code === 4902) {
+			try {
+			  await window.ethereum.request({
+				method: 'wallet_addEthereumChain',
+				params: [
+				  {
+					chainId: web3.utils.toHex(network.chainId),
+					chainName: network.chainName,
+					nativeCurrency: {
+					  name: network.nativeCurrency.name,
+					  symbol: network.nativeCurrency.symbol,
+					  decimals: network.nativeCurrency.decimals
+					},
+					rpcUrls: network.rpcUrls,
+					blockExplorerUrls: network.blockExplorerUrls
+				  },
+				],
+			  });
+			} catch (addError) {
+			  //console.error(addError);
+			}
+		  }
+		}
+	};
+	
+	const fetchABI = async () =>
+	{
+		const d = new Date();
+		const response = await fetch('/contract/Web3Domains.json?t=' + d.getMilliseconds());
+		const result = await response.json();
+		const abi = result.abi;
+		return abi;
+	};
+	
+	
+	
+	const setReverse = async (domain) => {
+	
+		var dialog = bootbox.dialog({
+			title: 'Set Reverse',
+			message: '<p class="text-center">Please wait while we do something... and do not close the browser.<br/><br/> <i class="fas fa-4x fa-spinner fa-spin"></i></p>',
+			closeButton: true,
+			size: 'large',
+			onHide: function(e) {
+				myDomains(currentAddress);
+			} 
+		});
+		
+		web3.eth.sendTransaction({
+				from: currentAddress,
+				to: currentNetwork.contactAddress,
+				value: 0,
+				data: contractFirst.methods.setReverse(domain).encodeABI()
+			}, (err, transactionId) => {
+			  if  (err) {
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Transaction failed, ' + err.message + '</p>');
+						}, 2000);
+					});
+				  } else {
+				  
+					var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your successful set reverse <br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
+						}, 4000);
+					});
+				 }
+		});
+	}
+	
+	const confirmNFTAvatar = (obj) => {
+		var domain = obj.domain;
+		var tokenId = obj.tokenId;
+		var key = "avatar";
+		var base64 = $('.setyoupic img').attr('src');
+		if (base64 == ''){
+			return;
+		}
+		
+		$('.btn-confirm-avatar i').show();
+		
+		$('.btn-confirm-avatar').attr('disabled', true);
+		
+		var objnew = new Object();
+		objnew.domain = domain;
+		objnew.key = 'avatar';
+		objnew.tokenId = tokenId;
+		objnew.base64 = base64;
+
+		$.ajax({
+			type: "POST",
+			url: "/api/nftdomains/setavatar",
+			data: JSON.stringify(objnew),
+			dataType: 'json',
+			success: function (dt) {  						
+				if (dt != null) 
+				{
+					var result = dt.result;
+					var objresult = JSON.parse(result);
+					if (objresult == null){
+						return;
+					}
+					
+					var avatar = objresult.image;
+					
+					web3.eth.sendTransaction({
+							from: currentAddress,
+							to: currentNetwork.contactAddress,
+							value: 0,
+							data: contractFirst.methods.set(key,avatar,tokenId).encodeABI()
+						}, (err, transactionId) => {
+						  if  (err) {
+								$('.btn-confirm-avatar i').hide();
+
+								$('.btn-confirm-avatar').attr('disabled', false);
+								
+								bootbox.alert('<p class="text-center mb-0" style="color:red;">Mint failed, ' + err.message + '</p>');
+								
+							  } else {
+							  
+								$('.btn-confirm-avatar i').hide();
+
+								$('.btn-confirm-avatar').attr('disabled', false);
+								
+								var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+								
+								bootbox.alert('<p class="text-center" style="color:green;">Congratulations on your successful Set NFT Avatar <br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
+							 }
+					});
+				}
+			}
+		});
+	}
+	
+	const setNFTAvatar = (obj) => {
+		var domain = obj.domain;
+		var tokenId = obj.tokenId;
+		var temp = '<div class="warp-setavatar text-center">';
+		temp += '<div class="setavatar text-center">';
+		temp += '<div class="setdomain">' + domain + '</div>';
+		temp += '<div class="setselectimage"><span class="btn btn-outline-success btn-sm btn-file"><input type="file" class="takePictureField" id="takePictureField"><label for="takePictureField">Select Image</label></span></div>';
+		temp += '<div class="setyoupic"></div>';
+		temp += '</div>';
+		temp += "<input type='hidden' class='hiddenValue' value='" + JSON.stringify(obj) + "' />";
+		temp += '<button class="btn btn-success btn-lg btn-confirm-avatar"><i class="fas fa-spinner fa-spin" style="display:none;"></i>Change Now</button>';
+		temp += '</div>';
+		
+		var dialog = bootbox.dialog({
+			title: 'Set NFT Avatar',
+			message: '<div class="text-center">' + temp + '</div>',
+			closeButton: true,
+			size: 'large',
+			onEscape: true,
+			onHide: function(e) {
+				myDomains(currentAddress);
+			} 
+		});
+	}
+	
+	const searchDomain = async (domain) => {
+		var owner = '';
+		
+		var fulldomain = fullDomain(domain, currentNetwork.tld);
+		
+		try {
+			owner = await contractFirst.methods.getOwner(fulldomain).call();
+		} catch (e) {
+			//alert(e.toString());
+		}
+		
+		var status = 'Unavailable';
+		
+		var css = 'text-danger';
+		
+		var isBuy = false;
+		
+		if (owner == '')
+		{
+			status = 'Available';
+			css = 'text-success';
+			isBuy = true;
+		}
+		
+		$('.result-search').removeClass('text-success').removeClass('text-danger').addClass(css).show();
+		
+		$('.result-logo').html('<img src="' + currentNetwork.logo + '"/>');
+		$('.result-domain').text(fulldomain);
+		$('.result-chain').text(currentNetwork.chainName);
+		$('.result-statustext').text(status);
+		
+		$('.result-details').hide();
+			
+		if (isBuy == true)
+		{
+			$('.domainhere').text(fulldomain);
+			
+			var _char = '5+ chars ';
+			
+			var _length =  domain.replace(currentNetwork.tld, '').length;
+			
+			var _price;
+			
+			var _price5char = await contractFirst.methods.getPrice().call();
+			
+			var _price4char = await contractFirst.methods.getPrice4Char().call();
+			
+			var _price3char = await contractFirst.methods.getPrice3Char().call();
+			
+			var _price2char = await contractFirst.methods.getPrice2Char().call();
+			
+			if (_length == 2)
+			{
+				_price = _price2char
+				_char = '2 chars ';
+			}
+			
+			if (_length == 3)
+			{
+				_price = _price3char
+				_char = '3 chars ';
+			}
+			if (_length == 4)
+			{
+				_price = _price4char
+				_char = '4 chars ';
+			}
+			if (_length >= 5)
+			{
+				_price = _price5char;
+			}
+
+			var price = web3.utils.fromWei(_price);
+			
+			var price2char = web3.utils.fromWei(_price2char);
+			
+			var price3char = web3.utils.fromWei(_price3char);
+			
+			var price4char = web3.utils.fromWei(_price4char);
+			
+			var price5char = web3.utils.fromWei(_price5char);
+			
+			//var pricelist = '<ul class="list-group"><li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			var pricelist = '<ul class="list-group">';
+			pricelist += '<li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">3 characters</span><span class="level-price">' + price3char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">4 characters</span><span class="level-price">' + price4char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">5+ characters</span><span class="level-price">' + price5char  + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li></ul>';
+			
+			$('.pricelist').html(pricelist);
+			
+			//$('.result-price').text('Price: ' + price + ' ' + currentNetwork.nativeCurrency.symbol + '/' + _char);
+			
+			$('.result-price').text('Price: ' + price + ' ' + currentNetwork.nativeCurrency.symbol);
+			
+			$('.result-details').show();
+		}
+	};
+	
+	const searchDomainTLD = async (domain) => {
+		
+		var isBuy = false;
+		
+		var tlds = [".iotx"];
+		
+		var temp = '';
+		
+		var domainselected = '';
+		
+		var tldselected = '';
+		
+		for (i = 0; i < tlds.length; i++) {
+		
+			var tld = tlds[i];
+			
+			var owner = '';
+			
+			var fulldomain = fullDomain(domain, tld);
+			
+			try {
+				owner = await contractFirst.methods.getOwner(fulldomain).call();
+			} catch (e) {
+				//alert(e.toString());
+			}
+			var status = 'Unavailable';
+		
+			var css = 'text-danger';
+			
+			var icon = 'fa-ban';
+			
+			if (owner == '')
+			{
+				status = 'Available';
+				css = 'text-success';
+				icon = 'fa-check-circle';
+				if  (domainselected == '') 
+				{
+					domainselected = domain;
+					tldselected = tld;
+					isBuy = true;
+				}
+			}
+			
+			temp += "<div data-domain='" + domain + "' data-tld='" + tld + "' class='domain-item " + css + "'><span class='domain-item-name'>" + fulldomain + "</span><span class='domain-item-status'><i class='fas " + icon + "'></i></span></div>";
+		}
+		
+		$('.result-select').html(temp);
+		
+		$('.result-search').show();
+		
+		$('.result-details').hide();
+			
+		if (isBuy == true && domainselected !== '' && tldselected !== '')
+		{
+
+			checkBuy(domainselected, tldselected);
+		}
+	};
+	
+	const checkBuy = async (domain, tld) =>
+	{
+			var _char = '5+ chars ';
+			
+			var _length =  domain.length;
+			
+			var _price;
+			
+			var _price5char = await contractFirst.methods.getPrice().call();
+			
+			var _price4char = await contractFirst.methods.getPrice4Char().call();
+			
+			var _price3char = await contractFirst.methods.getPrice3Char().call();
+			
+			var _price2char = await contractFirst.methods.getPrice2Char().call();
+			
+			if (_length == 2)
+			{
+				_price = _price2char
+				_char = '2 chars ';
+			}
+			
+			if (_length == 3)
+			{
+				_price = _price3char
+				_char = '3 chars ';
+			}
+			if (_length == 4)
+			{
+				_price = _price4char
+				_char = '4 chars ';
+			}
+			if (_length >= 5)
+			{
+				_price = _price5char;
+			}
+			
+			var fulldomain = fullDomain(domain, tld);
+
+			var price = web3.utils.fromWei(_price);
+			
+			var price2char = web3.utils.fromWei(_price2char);
+			
+			var price3char = web3.utils.fromWei(_price3char);
+			
+			var price4char = web3.utils.fromWei(_price4char);
+			
+			var price5char = web3.utils.fromWei(_price5char);
+			
+			//var pricelist = '<ul class="list-group"><li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			var pricelist = '<ul class="list-group">';
+			pricelist += '<li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">3 characters</span><span class="level-price">' + price3char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">4 characters</span><span class="level-price">' + price4char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">5+ characters</span><span class="level-price">' + price5char  + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li></ul>';
+			
+			$('.pricelist').html(pricelist);
+			
+			$('.result-price').text(fulldomain + ': ' + price + ' ' + currentNetwork.nativeCurrency.symbol);
+			
+			$('.btn-buy').attr('data-domain', domain).attr('data-tld', tld);
+			
+			$('.result-details').show();
+	};
+	
+	const buyDomain = async (domain) => 
+	{
+		var owner = '';
+		
+		var tld = currentNetwork.tld;
+		
+		var _domain = $('.btn-buy').attr('data-domain');
+		
+		var _tld = $('.btn-buy').attr('data-tld');
+
+		if (_domain !== '')
+		{
+			domain = _domain;
+		}
+		
+		if (_tld !== '')
+		{
+			tld = _tld;
+		}
+				
+		var fulldomain = fullDomain(domain, tld);
+		
+		try {
+			owner = await contractFirst.methods.getOwner(fulldomain).call();
+		} catch (e) {
+			
+		}
+		
+		if (owner !=='')
+		{
+			return;
+		}
+		
+		var isWhiteListActive = await contractFirst.methods.isWhiteListActive().call();
+		if (isWhiteListActive == true){
+			var chkInWhiteList = await contractFirst.methods.chkInWhiteList(currentAddress).call();
+			if (chkInWhiteList == false)
+			{
+				bootbox.alert('Your wallet address is not on the list of early buys, please wait for the public sale in two more days');
+				return;
+			}
+		}
+		
+		var _price;
+		
+		var _length =  domain.length;
+		
+		if (_length == 2)
+		{
+			_price = await contractFirst.methods.getPrice2Char().call();
+		}
+		
+		if (_length == 3)
+		{
+			_price = await contractFirst.methods.getPrice3Char().call();
+		}
+
+		if (_length == 4)
+		{
+			_price = await contractFirst.methods.getPrice4Char().call();
+		}
+		if (_length > 4)
+		{
+			_price = await contractFirst.methods.getPrice().call();
+		}
+
+		var price = web3.utils.fromWei(_price);
+		
+		var dialog = bootbox.dialog({
+			title: 'Mint your domain',
+			message: '<p class="text-center">Please wait while we do something... and do not close the browser.<br/><br/> <i class="fas fa-4x fa-spinner fa-spin"></i></p>',
+			closeButton: true,
+			size: 'large',
+			onHide: function(e) {
+				myDomains(currentAddress);
+			} 
+		});
+		
+		var tldnodot = tld.replace('.','');
+		
+		web3.eth.sendTransaction({
+				from: currentAddress,
+				to: currentNetwork.contactAddress,
+				value: web3.utils.toWei('' + price + '', 'ether'),
+				data: contractFirst.methods.buyDomain(domain, tldnodot).encodeABI()
+			}, (err, transactionId) => {
+			  if  (err) {
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Mint failed, ' + err.message + '</p>');
+						}, 2000);
+					});
+				  } else {
+				  
+					var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your successful purchase<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
+						}, 4000);
+					});
+				 }
+		});
+	};
+
+	const myDomains = async (address) => {
+	
+		$('.warp-mydomains').show();
+		
+		$('.mydomain-show').html('');
+		
+		var balance = await contractFirst.methods.balanceOf(address).call();
+		
+		$('.total-domains').html(balance);
+		
+		if (balance == 0)
+		{
+			return;
+		}
+
+		$('.loading').show();
+		
+		var tokens = [];
+		
+		for (i = 0; i < balance; i++) 
+		{
+			var tokenId = await contractFirst.methods.tokenOfOwnerByIndex(address, i).call();
+			try{
+				var domain = await contractFirst.methods._tokenURIs(tokenId).call();
+				var isOK = true;
+				if (tokens.length > 0){
+					for(var i=0; i < tokens.length; i++) {
+						if(tokens[i].domain == domain) {
+							isOK = false;
+							break;
+						}
+					}
+				}
+	
+				if (isOK == true){
+					var obj = new Object();
+					obj.owner = address;
+					obj.tokenId = tokenId;
+					obj.domain = domain;
+					tokens.push(obj);
+				}
+			}catch{}
+		};
+		
+		if (tokens.length > 0){
+		
+			$('.loading').hide();
+			
+			$.each(tokens, function(index, obj){
+				var endpoint = '/api/nftdomains/metadata/' + obj.domain;
+				const d = new Date();
+				const t = d.getTime()/1000;
+				
+				$.getJSON(endpoint, function(result) {   
+					var name = result.name;
+					var image = result.image + '';
+					var symbol = result.symbol;
+					var btnlbl = 'Set Domain';
+					if (name == domainReverse){
+						btnlbl = "Default"
+					}
+					var temp = "<div class='mydomain-item'><a target='_blank' href='" + image + "'><img style='width: 100%;' src='" + image + "' /></a><div style='cursor:pointer; margin-top: 5px;display:none;' data-domain='" + name + "' class='btn btn-sm btn-outline-success btn-set-reverse'>" + btnlbl + "</div><div style='cursor:pointer; margin-top: 5px;display:none;' data-obj='" + JSON.stringify(obj) + "' class='btn btn-sm btn-outline-success btn-set-avatar'>Set Avatar</div></div>"
+					$('.mydomain-show').append(temp);
+				});
+			});
+		}
+	};
+	
+	const preInit = () => 
+	{
+		  $(document).on('click', '.btn-copy', () => {
+				copyToClipboard(currentAddress);
+				$('.btn-copy').removeClass('fa-copy').addClass('fa-check-circle');
+				
+				setTimeout(function(){
+					$('.btn-copy').removeClass('fa-check-circle').addClass('fa-copy');
+				}, 500);
+		  });
+		  
+		  $(document).on('click', '.btn-disconnect', () => {
+				disconnect();
+		  });
+		  
+		  //btn-disconnect
+		  var q = getUrlParameter('q').trim().toLowerCase();
+		  if (q !== '')
+		  {
+			 if (q.length < 2)
+			 {
+				 $('.result-search').hide();
+				 notify('danger', '<span class="text-danger">Domain requires at least 2 characters</span>');
+			 }
+			 else
+			 {
+				 $('.txtdomain').val(q);
+				 var domain = fixDomain(q);
+				 searchDomainTLD(domain);
+			 }
+		  }
+
+		  $(document).on('click', '.btn-search', async function(){
+				var domain = $('.txtdomain').val().trim().toLowerCase();
+				if (domain == ''){
+					$('.result-search').hide();
+					return;
+				}
+
+				if (domain.length < 2){
+					$('.result-search').hide();
+					notify('danger', '<span class="text-danger">Domain requires at least 2 characters</span>');
+					return;
+				}
+				if (domain.length > 60){
+					$('.result-search').hide();
+					notify('danger', '<span class="text-danger">Domain max length</span>');
+					return;
+				}
+				
+				$('.btn-search i').show();
+				
+				domain = fixDomain(domain);
+				
+				await searchDomainTLD(domain);
+				
+				$('.btn-search i').hide();
+
+		  });
+		  
+		  $(document).on('click', '.btn-buy', async function(e){
+				e.preventDefault();
+				var domain = $('.txtdomain').val().trim().toLowerCase();
+				if (domain == ''){
+					$('.result-search').hide();
+					return;
+				}
+				
+				if (domain.length < 2)
+				{
+					$('.result-search').hide();
+					notify('danger', '<span class="text-danger">Domain requires at least 2 characters</span>');
+					return;
+				}
+				
+				if (clickenble == false)
+				{
+					return;
+				}
+				
+				clickenble = false;
+				
+				$('.btn-buy i').show();
+				
+				$(this).attr('disabled', false);
+				
+				domain = fixDomain(domain);
+				
+				await buyDomain(domain);
+				
+				setTimeout(function(){
+					clickenble = true;
+					$('.btn-buy i').hide();
+					$('.btn-buy').attr('disabled', true);
+				}, 300);
+		  });
+		  
+		  $(document).on('click', '.domain-item', async function(e){
+		  
+				if ($(this).hasClass('text-success') == false)
+				{
+					return;
+				}
+				
+				if ($(this).hasClass('active') == true)
+				{
+					return;
+				}
+				
+				$('.domain-item').removeClass('active');
+				
+				var domain = $(this).attr('data-domain');
+				
+				var tld = $(this).attr('data-tld');
+				
+				if (domain !== '' && tld !== ''){
+				
+					await checkBuy(domain, tld);
+					
+					$(this).addClass('active');
+				}
+		  });
+		  
+		  $(document).on('click', '.btn-mydomain-refresh', function(e){
+				myDomains(currentAddress);
+		  });
+		  
+		  
+		  $(document).on('click', '.btn-set-reverse', async function(){
+				var domain = $(this).attr('data-domain');
+				if (domain == ''){
+					return;
+				}
+				setReverse(domain);
+		  });
+		   
+		  $(document).on('click', '.btn-set-avatar', async function(){
+				var str = $(this).attr('data-obj');
+				if (str == ''){
+					return;
+				}
+				
+				var obj = JSON.parse(str);
+				if(obj == null){
+					return;
+				}
+				
+				setNFTAvatar(obj);
+		  });
+		  
+		  $(document).on('click', '.btn-confirm-avatar', async function(){
+				var str = $('.hiddenValue').val();
+				if (str == ''){
+					return;
+				}
+				
+				var obj = JSON.parse(str);
+				if(obj == null){
+					return;
+				}
+				
+				$('.btn-confirm-avatar i').show();
+		
+				$('.btn-confirm-avatar').attr('disabled', true);
+				
+				confirmNFTAvatar(obj);
+		  });
+		  
+		  $(document).on('change', '.takePictureField', function(event){
+				if((event.target.files.length == 1) && (event.target.files[0].type.indexOf("image/") == 0)) {		    
+					var img = document.createElement("img");
+					var reader = new FileReader();  			
+					reader.onload = (function (theImg) {
+							return function (evt) {
+								const image = new Image();
+								image.src = evt.target.result;
+								image.onload = () => {
+									if (image.width < 550){
+										bootbox.alert('Avatar width must be more than 550px, try again!');
+										return;
+									}
+									var src = evt.target.result;
+									$(".setyoupic").html('<img src="' + src + '" />');
+								};							
+							};
+					}(img));			
+					reader.readAsDataURL(event.target.files[0]);		
+				}
+		  });
+		
+		  //btn-mydomain-refresh
+		  
+		  myDomains(currentAddress);
+    };
+	
+	
+	const notify = function (type, msg) {
+		$.notify({
+			message: '<span class="small">' + msg + '</span>',
+			type: type
+		}, {
+			delay: 7000, placement: {
+
+				from: "bottom",
+				align: "center"
+			}
+		});
+	};
+			
+	
+	function copyToClipboard(text) {
+	  var $temp = $("<input>");
+	  $("body").append($temp);
+	  $temp.val(text).select();
+	  document.execCommand("copy");
+	  $temp.remove();
+	}
+	
+	function fullDomain(domain, tld)
+	{
+		domain = fixDomain(domain) + tld;
+		return domain;
+	}
+	
+	function fixDomain(domain)
+	{
+		const domainfix = domain.replace(/\./g, '').replace(/\s+/g, '').replace(/[^a-z0-9,. ]/gi, '').replace(/,/g, '');;
+		return domainfix;
+	}
+</script>
+</body>
+</html>
