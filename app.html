@@ -24,16 +24,21 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/paginationjs@2.1.5/dist/pagination.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-countdown@2.2.0/dist/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="/lib/jQuery/PluginStack/Wow-js/wow.min.js"></script>
 <script type="text/javascript" src="/js/custom.js?v=200"></script>
-<script type="text/javascript" src="/networks.js?v=2000"></script>
+<script type="text/javascript" src="/networks.js?v=5000"></script>
 <link rel="icon" href="/favicon/favicon-32x32.png" />
 <link rel="shortcut icon" href="/favicon/favicon-32x32.png" />
 <meta name="description" property="description" content="First Tron Web3 Domains - Get your favorite .trx domain and create your identity profile" />
-<title>Tron Web3 Domains (.trx) - Your Perfect Blockchain Identity</title>
+<title>Tron Web3 Domains</title>
 <style>
+.countdown{font-size: 30px; margin-top: 30px; margin-bottom: 20px;}
+.countdown div {display: inline-block; color: red; margin-right: 30px;}
+.countdown span {display: block; text-align: center; font-size: 15px;}
 .warp-banner{
 	background: none!important;
+	margin-top: 50px!important;
 }
 .warp-search{
 	margin: 0 auto;
@@ -465,7 +470,15 @@ div[data-notify="container"] {
 	<div class="warp-search">
 		<div class="banner-nofix">
 			<div class="container">
-				<div class="alert alert-danger alert-begin" style='margin-bottom: 30px; with:80%'>You are not logged in or your wallet is locked. Please open the TronLink wallet and enter the password to unlock.<br/> Select "Tron Shasta Testnet" network, then press the "Connect Wallet" button below.</div>
+				<div class="" class="text-center" style="padding-bottom: 15px;">
+					<h4>Follow us:</h4>
+					<a href='https://apenft.io/collections/tron-web3-domains' target="_blank">ApeNFT Marketplace "Buy/Sell Tron Web3 Domains - DID Identity"</a><br/>
+					<a href='https://devpost.com/software/tron-web3-domains-trx' target="_blank">Devpost "TRON Grand Hackathon 2022"</a><br/>
+					<a href='https://forum.trondao.org/t/tron-web3-domains-your-perfect-blockchain-identity/3861' target="_blank">Forum DAO "Tron Web3 Domains - Domains names for Web3"</a><br/>
+					<a href='https://tronscan.io/#/token721/TAtgoVq9xqv1C65hjFTerJQZFt4rbAPea6' target="_blank">Contract Address: TAtgoVq9xqv1C65hjFTerJQZFt4rbAPea6</a><br/>
+				</div>
+				<div class="countdown" class="text-center" data-date="" style="display:none;"></div>
+				<div class="alert alert-danger alert-begin" style='margin-bottom: 30px; with:80%;'>You are not logged in or your wallet is locked. Please open the TronLink wallet and enter the password to unlock.<br/> Select "Tron Mainnet" network, then press the "Connect Wallet" button below.</div>
 				<div class="menu-btn" style="margin-bottom: 20px;">
 						<span class="dropdown select-chain" style='display:none;'>
 							<span class="dropdown-toggle" data-toggle="dropdown" href="#"><span class='selected-chain'>Select Chain</span></span>
@@ -560,7 +573,7 @@ div[data-notify="container"] {
 	<div class="container text-center">
 		<div class="warp-social">
 			<a class="social-twiter" href="https://twitter.com/TrxDomains" target="_blank" class="wow fadeInUp"><i class="fab fa-twitter"></i></a>
-			<a class="social-github" href="#" style="display:none;" target="_blank" class="wow fadeInUp"><i class="fab fa-github-alt"></i></a>
+			<a class="social-github" href="https://github.com/TronWeb3Domains" style="" target="_blank" class="wow fadeInUp"><i class="fab fa-github-alt"></i></a>
 			<a class="social-discord" href="#" style="display:none;" class="wow fadeInUp"><i class="fab fa-discord"></i></a>
 		</div>
 	</div>
@@ -589,27 +602,31 @@ div[data-notify="container"] {
     });
 	
 	 window.addEventListener('message', function (e) {
-
-        //if (getCookie('tronlinkState') === 'true' && window.tronWeb.defaultAddress.base58) {
-            //const address = window.tronWeb.defaultAddress.base58
-            //document.getElementById("address").innerHTML = address.substr(0, 6) + '...' + address.substr(-4, 4)
-        //}
+		
+		$(".countdown").countdown("2022-07-25 14:00 UTC", function(event) {
+			var days = event.offset.days;
+			var hours = event.offset.hours;
+			var minutes = event.offset.minutes;
+			var seconds = event.offset.seconds;
+			$(this).html(
+			  event.strftime('<div>%D <span>days</span></div><div>%H <span>hours</span></div><div>%M <span>minutes</span></div><div>%S <span>seconds</span></div>')
+			);
+			if (days == 0 && hours == 0 && minutes == 0 && seconds == 0){
+				$(".countdown").hide();
+				$(".btn-connect-wallet").show();
+			}
+		}).on('finish.countdown', function(){
+			$(".countdown").hide();
+			$(".btn-connect-wallet").show();
+		});
 
         // Tronlink chrome v3.22.1 & Tronlink APP v4.3.4 started to support 
         if (e.data.message && e.data.message.action == "connect") {
-            //console.log("connect event", e.data.message.isTronLink)
-            //const address = window.tronWeb.defaultAddress.base58
-            //document.getElementById("address").innerHTML = address.substr(0, 6) + '...' + address.substr(-4, 4)
 
         }
 
         // Tronlink chrome v3.22.1 & Tronlink APP v4.3.4 started to support 
         if (e.data.message && e.data.message.action == "disconnect") {
-
-            //setCookie('tronlinkState', false, 0, '/')
-            //document.getElementById("address").innerHTML = 'Connect Wallet'
-            //console.log("disconnect event", e.data.message.isTronLink)
-
         }
 
     });
@@ -639,8 +656,8 @@ div[data-notify="container"] {
     });
 
 	
-	const disconnect =  async () => {
-		
+	const disconnect =  async () => 
+	{
 		
 		contractFirst = null;
 		
@@ -659,6 +676,8 @@ div[data-notify="container"] {
 		$('.result-search').hide();
 		
 		$('.warp-mydomains').hide();
+		
+		location.reload();
 
 	};
 	
@@ -688,7 +707,6 @@ div[data-notify="container"] {
 		}
 		
 		
-		
 		$('.tld').text('');
 		
 		$('.not-support').hide();
@@ -696,8 +714,6 @@ div[data-notify="container"] {
 		$('.btn-connect-wallet i.fa-spin').show();
 		
 		$('.btn-connect-wallet').attr('disabled', true);
-		
-		//var tronWeb = window.tronWeb;
 		
 		try {
 		
@@ -746,8 +762,6 @@ div[data-notify="container"] {
 			  
 			  var _balance = await tronWeb.trx.getBalance(currentAddress);
 			  
-			  //alert(_balance);
-			  
 			  balance = parseFloat(tronWeb.fromSun(_balance)).toFixed(3);
 			  
 			  // check reverseOf
@@ -775,6 +789,7 @@ div[data-notify="container"] {
 			  text += ' (' + balance + ' ' + currentNetwork.nativeCurrency.symbol + ')';
 					
 			  text += " <i class='fas fa-copy btn-copy' title='Copy address to clipboard' style='cursor:pointer; margin-left:5px;'></i>";
+			  
 			  text += " <i class='fas fa-sign-out btn-disconnect' title='Disconnect' style='cursor:pointer; margin-left:5px;'></i>";
 					
 			  $('.btn-connect-wallet').html(text).addClass('wallet-connected').prop('disabled', true).css('cursor','default');
@@ -788,7 +803,7 @@ div[data-notify="container"] {
 			  isConnection = true;
 			  
 		} catch (err) {
-			notify('alert-danger', '<span class="text-danger">The system only supports Tron Shasta Testnet, please change network!: ' + err.toString() + '</span>');
+			notify('alert-danger', '<span class="text-danger">The system only supports Tron Mainnet, please change network!: ' + err.toString() + '</span>');
 			
 			$('.btn-connect-wallet i.fa-spin').hide();
 		
@@ -1115,11 +1130,11 @@ div[data-notify="container"] {
 			
 			var _price5char = await contractFirst.getPrice().call();
 			
-			var _price4char = await contractFirst.getPrice4Char().call();
+			var _price4char = _price5char * 6;
 			
-			var _price3char = await contractFirst.getPrice3Char().call();
+			var _price3char = _price5char * 30;
 			
-			var _price2char = await contractFirst.getPrice2Char().call();
+			var _price2char = _price5char * 200;
 			
 			if (_length == 2)
 			{
@@ -1153,6 +1168,8 @@ div[data-notify="container"] {
 			var price4char = tronWeb.fromSun(_price4char);
 			
 			var price5char = tronWeb.fromSun(_price5char);
+			
+			var lbldiscount = '<span class="discount" style="color:red; margin-left: 7px;"></span>';
 			
 			//var pricelist = '<ul class="list-group"><li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
 			var pricelist = '<ul class="list-group">';
@@ -1203,16 +1220,6 @@ div[data-notify="container"] {
 			return;
 		}
 		
-		var isWhiteListActive = await contractFirst.isWhiteListActive().call();
-		if (isWhiteListActive == true){
-			var chkInWhiteList = await contractFirst.chkInWhiteList(currentAddress).call();
-			if (chkInWhiteList == false)
-			{
-				bootbox.alert('Your wallet address is not on the WhiteList.');
-				return;
-			}
-		}
-		
 		var isBookingListActive = await contractFirst._isBookingListActive().call();
 		if (isBookingListActive == true){
 			var chkInBookingList = await contractFirst.chkInBookingList(domain).call();
@@ -1223,27 +1230,29 @@ div[data-notify="container"] {
 			}
 		}
 		
-		var _price;
+		
 		
 		var _length =  domain.length;
 		
+		var _price = await contractFirst.getPrice().call();
+		
 		if (_length == 2)
 		{
-			_price = await contractFirst.getPrice2Char().call();
+			_price = _price * 200;
 		}
 		
 		if (_length == 3)
 		{
-			_price = await contractFirst.getPrice3Char().call();
+			_price = _price * 30;
 		}
 
 		if (_length == 4)
 		{
-			_price = await contractFirst.getPrice4Char().call();
+			_price = _price * 6;
 		}
 		if (_length > 4)
 		{
-			_price = await contractFirst.getPrice().call();
+			_price = _price;
 		}
 
 		var price = tronWeb.fromSun(_price)
