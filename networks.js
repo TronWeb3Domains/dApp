@@ -1,17 +1,17 @@
 const networks = [
 		{
-			"chainName":"Tron Shasta",
+			"chainName":"Tron Mainnet",
 			"chain": "tron",
 			"chainId": 0,
 			"shortName": "tron",
 			"networkId": 0,
 			"nativeCurrency":{"name":"Tron","symbol":"TRX","decimals":18},
 			"rpcUrls": [""],
-			"blockExplorerUrls": ["https://shasta.tronscan.org/"],
-			"contactAddress": "TEEfzij863Svys3nJrppQyhCzizECoeYqJ",
-			"tld": ".tron", 
+			"blockExplorerUrls": ["https://tronscan.io/"],
+			"contactAddress": "TAtgoVq9xqv1C65hjFTerJQZFt4rbAPea6",
+			"tld": ".trx", 
 			"logo": "/images/cryptologo/trx.svg",
-			"baseUri" : "https://app.trx.claims/api/nftdomains/metadata/",
+			"baseUri" : "https://app.trxdomains.xyz/api/nftdomains/metadata/",
 			"visible" : true
 		}
 	];
