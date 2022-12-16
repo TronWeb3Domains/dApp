@@ -18,27 +18,58 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0-rc.5/dist/web3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tronweb@4.2.0/dist/TronWeb.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootbox@5.5.2/bootbox.all.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/bootstrap-notify.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/paginationjs@2.1.5/dist/pagination.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-countdown@2.2.0/dist/jquery.countdown.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@multiavatar/multiavatar/multiavatar.min.js"></script>
-<script type="text/javascript" src="/lib/jQuery/PluginStack/Wow-js/wow.min.js"></script>
-<script type="text/javascript" src="/js/custom.js?v=200"></script>
-<script type="text/javascript" src="/networks.js?v=5000"></script>
+<script type="text/javascript" src="/lib/jQuery/PluginStack/Wow-js/wow.min.js?v=10"></script>
+<script type="text/javascript" src="/js/custom.js?v=202"></script>
+<script type="text/javascript" src="/networks-bttc.js"></script>
+<script type="text/javascript" src="/contract/abi.js"></script>
 <link rel="icon" href="/favicon/favicon-32x32.png" />
 <link rel="shortcut icon" href="/favicon/favicon-32x32.png" />
-<meta name="description" property="description" content="First Tron Web3 Domains - Get your favorite .trx domain and create your identity profile" />
-<title>Tron Web3 Domains</title>
+<title>BitTorrent Web3 Domains</title>
+<meta name="description" content="BitTorrent Web3 Domains - Your Perfect Blockchain Identity">
 <style>
-.countdown{font-size: 30px; margin-top: 30px; margin-bottom: 20px;}
-.countdown div {display: inline-block; color: red; margin-right: 30px;}
-.countdown span {display: block; text-align: center; font-size: 15px;}
+body{
+	color: #000;
+	background-image: linear-gradient(45deg, #a909b7, #7761ff);
+}
+.warp-header.active{
+	background: #7761ff;
+}
+.warp-header{
+	background: none;
+	box-shadow: none;
+	color: #FFF;
+}
+
+.menu li a{
+	color: #FFF;
+}
+
+.logo img {
+	width: 60px;
+}
 .warp-banner{
-	background: none!important;
-	margin-top: 50px!important;
+	background: none;
+}
+.banner-title {
+	font-size: 45px;
+}
+.warp-footer:before{
+	background:none;
+}
+
+h3,h4,h5 {
+	color: #000;
+}
+.txtdomain:focus {
+	box-shadow: inset 0 -1px 0 #FFF;
+}
+.warp-banner{
+	min-height: 500px;
 }
 .warp-search{
 	margin: 0 auto;
@@ -47,32 +78,32 @@
 	color: #FFF!important;
 }
 .warp-result .text-success{
-	color: #ff0003!important;
+	color: #007bff!important;
 }
 
 .warp-setavatar .btn-success {
-	background-color: #ff0003!important;
-	border-color: #ff0003!important;
+	background-color: #7761ff!important;
+	border-color: #7761ff!important;
 }
 .warp-result .text-success{
-	color: #ff0003!important;
+	color: #7761ff!important;
 }
 
 .btn-outline-success
 {
-	border: 1px solid #ff0003!important;
-	color: #ff0003!important;
+	border: 1px solid #7761ff!important;
+	color: #7761ff!important;
 }
 .btn-success{
 	color: #FFF!important;
-	background-color: #ff0003!important;
 	border: 0px!important;
+	background-color: #7761ff!important;
 }
-.loading {color: #ff0003!important;}
+.loading {color: #7761ff!important;}
 
 .btn-outline-success:hover
 {
-	background-color: #ff0003!important;
+	background-color: #7761ff!important;
 	color: #FFF!important;
 }
 .warp-result{
@@ -87,6 +118,11 @@
 }
 .select-chain {
 	font-size: 13px;
+}
+
+.btn-custom{
+	color: #FFF;
+	border: 2px solid #FFF;
 }
 
 .btn-connect-wallet:hover{
@@ -168,6 +204,7 @@
 .pricelist{
 	max-width: 400px;
 	margin: 0 auto;
+	color: #000;
 }
 .preview {
 	position: relative;
@@ -187,6 +224,7 @@
 .result-select {
 	padding:10px;
 	margin: 0px auto;
+	color: #000;
 }
 
 .domain-item {
@@ -243,6 +281,7 @@
 }
 .pricelistwarp{
 	background: #FFF;
+	color: #000;
 }
 .result-price{
 	padding:15px; font-size: 20px; font-weight: bold;
@@ -415,16 +454,17 @@
         width: 600px;
         font-size: 14px;
     }
-	
+
 .modal-custom .modal-dialog {
-        width: 400px;
+        width: 500px;
         font-size: 13px;
     }
-
+	
 div[data-notify="container"] { 
     width: auto; 
 	margin-left: 30px;
 }
+
 
 .emoji-picker{
 	border: 0;
@@ -461,26 +501,75 @@ div[data-notify="container"] {
 	font-weight: bold
 }
 
+.wallet-ui .modal-content {
+        background: #FFF;
+        box-shadow: 0 8px 20px rgb(0 0 0 / 60%);
+    }
+	
+.wallet-ui .modal-dialog {
+        width: 600px;
+		height: 400px;
+        font-size: 12px;
+    }
+
+    .wallet-ui .list-group {
+        margin: 20px 0 20px 0;
+        padding: 0;
+        width: 100%;
+        display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		list-style: none;
+    }
+
+    .wallet-ui .wallet-adapter-item {
+        border: 1px solid #DDD;
+        border-radius: 6px;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        padding: 30px;
+        margin-right: 10px;
+		margin-bottom: 7px;
+    }
+	.wallet-ui .wallet-adapter-item:last-child {
+		margin-right: 0px;
+	}
+
+        .wallet-ui .wallet-adapter-item:hover {
+            background-image: linear-gradient(rgba(0,0,0,.15) 0 0);
+        }
+
+        .wallet-ui .wallet-adapter-item span {
+			display: block;
+			margin-top: 10px;
+			color: #666;
+        }
+
+
+        .wallet-ui .wallet-adapter-item img {
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+        }
+
+
 </style>
 </head>
-<body class='bg-gray'>
+<body>
 <div class="warp-header" id="home">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-sm-2 col-xs-12">
 				<div class="logo">
-					<a href="/"><img src="/logo/logo_cic.png?v=3" style='width:65px;' /></a>
+					<a href="/"><img src="/logo/logo.png?v=3" /></a>
 				</div>
 			</div>
-			<div class="col-md-10 col-sm-10 col-xs-12 text-mg-right">
+			<div class="col-md-10 col-sm-10 col-xs-12 text-right">
 				<div class="menu">
 					<div class="menu-close"><i class="fal fa-times-circle"></i></div>
 					<ul class="nav">
-						<li class="nav-item active"><a data-id="" href="/">Home</a></li>
-						<li class="nav-item"><a data-id="" href="/bttc">BitTorrent Web3 Domains</a></li>
-						<!--<li class="nav-item"><a data-id="#features" href="#">Features</a></li>
-						<li class="nav-item"><a data-id="#roadmap" href="#">Roadmap</a></li>
-						<li class="nav-item"><a data-id="#faqs" href="#">FAQ</a></li>-->
+						<li class="nav-item"><a data-id="" href="/">Home</a></li>
+						<li class="nav-item"><a data-id="" href="/app">Tron Web3 Domains</a></li>
 					</ul>
 				</div>
 			</div>
@@ -493,15 +582,10 @@ div[data-notify="container"] {
 </div>
 <div class="warp-banner text-center">
 	<div class="warp-search">
-		<div class="banner-nofix">
+		<div class="banner-nofix" style="z-index: 999; position: relative;">
 			<div class="container">
-				<div class="" class="text-center" style="padding-bottom: 15px;">
-					<h4>Follow us:</h4>
-					<a href='https://apenft.io/#/collection/TAtgoVq9xqv1C65hjFTerJQZFt4rbAPea6' target="_blank">ApeNFT Marketplace "Buy/Sell Tron Web3 Domains - DID Identity"</a><br/>
-					<a href='https://tronscan.io/#/token721/TAtgoVq9xqv1C65hjFTerJQZFt4rbAPea6' target="_blank">Contract: TAtgoVq9xqv1C65hjFTerJQZFt4rbAPea6</a><br/>
-				</div>
-				<div class="countdown" class="text-center" data-date="" style="display:none;"></div>
-				<div class="alert alert-danger alert-begin" style='margin-bottom: 30px; with:80%;'>You are not logged in or your wallet is locked. Please open the TronLink wallet and enter the password to unlock.<br/> Select "Tron Mainnet" network, then press the "Connect Wallet" button below.</div>
+				<h3 class="banner-title title-color text-center" style="color:#FFF; margin-bottom: 20px;">BitTorrent Web3 Domains (.btt)</h3>
+				<div class="" style='margin-bottom: 30px; color:#FFF; '>We're a Multi-chain Web3 Domains developer that supports EVM: Fusion, Elastos, BitTorrent ...</div>
 				<div class="menu-btn" style="margin-bottom: 20px;">
 						<span class="dropdown select-chain" style='display:none;'>
 							<span class="dropdown-toggle" data-toggle="dropdown" href="#"><span class='selected-chain'>Select Chain</span></span>
@@ -509,11 +593,11 @@ div[data-notify="container"] {
 							</ul>
 						</span>
 						<span class="btn btn-lg btn-rounded btn-transparent-white btn-hvr-white btn-connect-wallet btn-custom" style="cursor:pointer;">
-							<i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i> <img src="/images/tronlink.svg" style="margin-right: 7px;" alt="TronLink">Connect Wallet (TronLink)
+							<i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i> Connect Wallet
 						</span>
 						<input type="hidden" class="currentAddress" />
 					</div>
-				<div class="alert alert-danger text-center not-support" style="display:none; width:750px; margin:0 auto; margin-bottom: 20px;" role="alert">
+				<div class="alert alert-danger text-center not-support" style="display:none; margin:0 auto; margin-bottom: 20px;" role="alert">
 				  <i class="fas fa-2x fa-exclamation-triangle"></i>
 					<span>
 						Network is not currently supported. Please click button below.<br/>
@@ -523,10 +607,10 @@ div[data-notify="container"] {
 				<div class="tutorial">
 					
 				</div>
-				<div class="warp-form-search" style="display:none;">
-					<div class='text-right' style="max-width: 800px; color: #000; margin: 0 auto;">
+				<div class="warp-form-search" style='display:none; max-width: 800px; margin: 0 auto;'>
+					<div class='text-right'>
 						<span class='emoji-picker'>
-							<span class='' style="color: #000;">Emoji Picker 🖐</span>
+							<span class=''>Emoji Picker 🖐</span>
 							<span class='emoji-load' style='display: none;'><emoji-picker></emoji-picker></span>
 						</span>
 					</div>
@@ -535,11 +619,11 @@ div[data-notify="container"] {
 							<input type="text" class="form-control form-control-lg txtdomain" placeholder="Search domains"/>
 							<div class="input-group-append">
 								<span class='tld'>.</span>
-								<span class="btn btn-default btn-success btn-outline-secondary btn-search" style="cursor:pointer;"><i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i>Search</span>
+								<span class="btn btn-default btn-success btn-search" style="cursor:pointer;"><i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i>Search</span>
 							</div>
 						</div>
 					</div>
-					<div class='small' style="display: block; color: #FFF; margin-top: 10px; display: none;">You can use the "-" or "_" character like this: my-name.rose, hello_world.rose</div>
+					<div class='small' style="color: #FFF; margin-top: 20px;"></div>
 				</div>
 			
 			</div>
@@ -557,7 +641,8 @@ div[data-notify="container"] {
 							</span>
 					</div>
 					<div class="result-details" style="display:none;">
-						<div class="">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class=''>
 									<div class='pricelist'></div>
 									<div class='pricelistwarp'>
@@ -565,6 +650,12 @@ div[data-notify="container"] {
 									</div>
 								</div>
 								<span style="cursor: pointer; padding:15px; font-weight: bold; font-size: 17px;" class='btn btn-block btn-lg btn-success btn-buy'><i class="fas fa-spinner fa-spin" style="display:none;margin-right:5px;"></i>Mint Now </span>
+							</div>
+							<div style='display:none;' class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+								<div class='preview'>
+									<div class="domainhere"></div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -573,7 +664,7 @@ div[data-notify="container"] {
 			<div class="warp-mydomains" style="display:none;">
 				<div class="container">
 					<div class="mydomains">
-						<h4 class='strong'>Your Domains: <span class='total-domains'></span></h4>
+						<h4 class='strong' style="color: #000;">You have <span class='total-domains'></span> domains</h4>
 						<div class='text-right'><span style="cursor:pointer;" class='btn btn-sm btn-outline-success btn-mydomain-refresh'>Refresh</span></div>
 						<div class='loading text-center' style='display:none; color:#70d44b'><i class='fas fa-4x fa-spinner fa-spin'></i></div>
 						<div class='mydomain-show'></div>
@@ -583,19 +674,18 @@ div[data-notify="container"] {
 	       </div>
 	</div>
 </div>
-
-<div class="warp-footer bg-gray">
+<div class="warp-footer">
 	<div class="container text-center">
 		<div class="warp-social">
 			<a class="social-twiter" href="https://twitter.com/TrxDomains" target="_blank" class="wow fadeInUp"><i class="fab fa-twitter"></i></a>
-			<a class="social-github" href="https://github.com/TronWeb3Domains" style="" target="_blank" class="wow fadeInUp"><i class="fab fa-github-alt"></i></a>
-			<a class="social-npm" href="https://www.npmjs.com/package/trondomainjs" style="" target="_blank" class="wow fadeInUp"><i class="fab fa-npm"></i></a>
+			<a class="social-github" href="https://github.com/TronWeb3Domains/BitTorrent" style="" target="_blank" class="wow fadeInUp"><i class="fab fa-github-alt"></i></a>
 			<a class="social-discord" href="#" style="display:none;" class="wow fadeInUp"><i class="fab fa-discord"></i></a>
+			
 		</div>
 	</div>
 	<div class="warp-copyright">
 		<div class="container text-center">
-			Copyright © 2022 Tron Web3 Domains. All Rights Reserved.
+			Copyright © 2022 BitTorrent Web3 Domains. All Rights Reserved.
 		</div>
 	</div>
 </div>
@@ -612,45 +702,27 @@ div[data-notify="container"] {
 	var clickenble = true;
 	
 	var isConnection = false;
+	
+	var connector;
+	
+	var adapter;
 
 	window.addEventListener('load', async () => {
 		//await connect();
     });
 	
-	 window.addEventListener('message', function (e) {
-		
-		$(".countdown").countdown("2022-07-25 14:00 UTC", function(event) {
-			var days = event.offset.days;
-			var hours = event.offset.hours;
-			var minutes = event.offset.minutes;
-			var seconds = event.offset.seconds;
-			$(this).html(
-			  event.strftime('<div>%D <span>days</span></div><div>%H <span>hours</span></div><div>%M <span>minutes</span></div><div>%S <span>seconds</span></div>')
-			);
-			if (days == 0 && hours == 0 && minutes == 0 && seconds == 0){
-				$(".countdown").hide();
-				$(".btn-connect-wallet").show();
-			}
-		}).on('finish.countdown', function(){
-			$(".countdown").hide();
-			$(".btn-connect-wallet").show();
-		});
-
-        // Tronlink chrome v3.22.1 & Tronlink APP v4.3.4 started to support 
-        if (e.data.message && e.data.message.action == "connect") {
-
-        }
-
-        // Tronlink chrome v3.22.1 & Tronlink APP v4.3.4 started to support 
-        if (e.data.message && e.data.message.action == "disconnect") {
-        }
-
-    });
-	
 	$(document).on('click', '.btn-connect-wallet', async() => {
-		await connect();
+		await selectWallet();
     });
 	
+	$(document).on('click', '.wallet-adapter-item', async function () {
+		var _adapter = $(this).attr('data-adapter');
+		if (_adapter != '') {
+			adapter = _adapter;
+			await connect();
+			bootbox.hideAll();
+		}
+	});
 
 	$(document).on('keyup', '.txtdomain', function(){
 		var str = $(this).val().trim().toLowerCase();
@@ -671,57 +743,91 @@ div[data-notify="container"] {
          $('.emoji-load').slideUp();
     });
 
+	const networkUI = () => {
+		if (networks.length > 0){
+			var temp = '';
+			$.each(networks, function(index, network){
+				if (network.visible == true){
+					temp += "<li class='list-item' data-chain='" + network.chain.toLowerCase() + "'><span><img class='chain-logo' src='" + network.logo + "' /><span class='chain-name'>" + network.chain.toUpperCase() + "</span></span></li>";
+				}				 
+			});
+			
+			$('.dropdown-menu').html(temp);
+			
+			$(document).on('click', '.list-item', function()
+			{
+				$('.list-item').removeClass('list-item-active');
+				
+				$(this).addClass('list-item-active');
+				
+				var text = $(this).html();
+				
+				$('.selected-chain').html(text);
+				
+				var chain = $(this).attr('data-chain');
+				
+				changeNetwork(chain);
+			});
+		}
+	};
 	
-	const disconnect =  async () => 
-	{
-		
-		contractFirst = null;
-		
-		currentNetwork = null;
-		
-		currentAddress = '';
-		
-		$('.btn-connect-wallet').text('Connect Wallet');
-		
-		$('.btn-connect-wallet').removeClass('wallet-connected');
-		
-		$('.btn-connect-wallet').removeAttr('disabled');
-		
-		isConnection = false;
-		
-		$('.result-search').hide();
-		
-		$('.warp-mydomains').hide();
+	//networkUI();
+	
+	$(document).on('click', '.btn-changenetwork', function(){
+		var chain = 'bttc';
+		changeNetwork(chain);
+    });
+	
+	const disconnect =  async () => {
+		if (!window.ethereum) {
+			notify('alert-danger', '<span class="text-danger">No Metamask (or other Web3 Provider) installed</span>');
+			return;
+		}
+		//ethereum.on('disconnect', handler: (error: ProviderRpcError) => void);
 		
 		location.reload();
 
 	};
 	
-	const connect =  async () => {
-		const getTronweb = ()=>{
-            var obj = setInterval(async ()=>{
-                if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-					currentAddress = await window.tronWeb.defaultAddress.base58;
-                    clearInterval(obj);
-					var tronWeb = await tronLink.request({
-						method: "tron_requestAccounts",
-					});
-                }
-            }, 20);
+	const selectWallet = async() => 
+	{
+		var bitkeep = "/logo/bitkeep.svg";
+		var metamask = "/logo/metamask.svg";
+		
+		var argAdapterName = ['Bitkeep Extension','Metamask & Web3js support'];
+		var argAdapter = ['bitkeep', 'metamask'];
+		var argAdapterIcon = [bitkeep, metamask];
+		
+		var item = '';
+		var item = '';
+		$.each(argAdapter, function (i, adapter) {
+			item += "<li class='wallet-adapter-item text-center' data-adapter='" + adapter.toLowerCase() + "'><img src='" + argAdapterIcon[i] + "?v=10' /><span style='font-size: 11px;' class='wallet-adapter-item-name'>" + argAdapterName[i] + "</span></li>";
+		});
+		var tmp = "<div class='select-wallet'>";
+		tmp += "<h3>Connect Wallet</h3>";
+		tmp += "<ul class='list-group'>" + item + "</ul>";
+		tmp += "</div>";
+		var dialog = bootbox.dialog({
+			message: tmp,
+			closeButton: true,
+			className: 'wallet-ui',
+			size: 'lg'
+		});
+	}
+	
+	const getProvider = () => {
+        const provider = window.bitkeep && window.bitkeep.ethereum;
+        if(!provider){
+            return window.open('https://bitkeep.com/download?type=0&theme=light') 
         }
-		
-		getTronweb();
-		
-		if (currentAddress == '')
-		{
+        return  provider;
+    }
+	
+	
+	const connect =  async () => {
+		if (isConnection == true){
 			return;
 		}
-
-		if (isConnection == true)
-		{
-			return;
-		}
-		
 		
 		$('.tld').text('');
 		
@@ -731,11 +837,46 @@ div[data-notify="container"] {
 		
 		$('.btn-connect-wallet').attr('disabled', true);
 		
-		try {
+		var chainId = 199;
 		
-			  $('.alert-begin').hide();
+		if (adapter == 'metamask')
+		{
+			web3 = new Web3(ethereum);
+
+			window.ethereum.on('chainChanged', () => {
+				document.location.reload();
+			});
+				  
+			window.ethereum.on('accountsChanged', () => {
+				 document.location.reload();
+			});
+			
+			chainId = await web3.eth.net.getId();
+			
+			await web3.eth.requestAccounts();
+		}
+
+		if (adapter == 'bitkeep'){
+			const provider = getProvider();
+			
+			await provider.request({ method: 'eth_requestAccounts' });
+			
+			web3 = new Web3(provider);
+
+		}
+		
+		try {
+			  window.ethereum.on('chainChanged', () => {
+			  	  document.location.reload();
+			  });
 			  
-			  const chainId = 0;
+			  window.ethereum.on('accountsChanged', () => {
+			  	  document.location.reload();
+			  });
+			  
+			  await web3.eth.requestAccounts();
+			  
+			  const chainId = await web3.eth.net.getId();
 			  
 			  currentNetwork = getObjects(networks, "chainId", chainId)[0];
 			  
@@ -760,9 +901,18 @@ div[data-notify="container"] {
 						return;
 					}
 			  });
-			  
+
+			  //var abi = await fetchABI();
 			
-			  contractFirst = await tronWeb.contract().at(currentNetwork.contactAddress);
+			  try{
+				  contractFirst = new web3.eth.Contract(
+								  abi,
+								  currentNetwork.contactAddress
+				  );
+			  }catch(e){
+				notify('danger', '<span class="text-danger">' + e.toString() + '</span>');
+				//return;
+			  }
 			  
 			  if (contractFirst == null)
 			  {
@@ -776,14 +926,17 @@ div[data-notify="container"] {
 			   
 			  $('.not-support').hide();
 			  
-			  var _balance = await tronWeb.trx.getBalance(currentAddress);
+			  var _currentAddress = await web3.eth.getAccounts();
 			  
-			  balance = parseFloat(tronWeb.fromSun(_balance)).toFixed(3);
+			  currentAddress = _currentAddress.toString();
+			  
+			  var _balance = await web3.eth.getBalance(currentAddress);
+			  
+			  balance = parseFloat(web3.utils.fromWei(_balance)).toFixed(3);
 			  
 			  // check reverseOf
-			  try
-			  {
-				  domainReverse = await contractFirst.reverseOf(currentAddress).call();
+			  try{
+				domainReverse = await contractFirst.methods.reverseOf(currentAddress).call();
 			  }catch{}
 			  
 			  
@@ -805,7 +958,6 @@ div[data-notify="container"] {
 			  text += ' (' + balance + ' ' + currentNetwork.nativeCurrency.symbol + ')';
 					
 			  text += " <i class='fas fa-copy btn-copy' title='Copy address to clipboard' style='cursor:pointer; margin-left:5px;'></i>";
-			  
 			  text += " <i class='fas fa-sign-out btn-disconnect' title='Disconnect' style='cursor:pointer; margin-left:5px;'></i>";
 					
 			  $('.btn-connect-wallet').html(text).addClass('wallet-connected').prop('disabled', true).css('cursor','default');
@@ -819,7 +971,7 @@ div[data-notify="container"] {
 			  isConnection = true;
 			  
 		} catch (err) {
-			notify('alert-danger', '<span class="text-danger">The system only supports Tron Mainnet, please change network!: ' + err.toString() + '</span>');
+			notify('alert-danger', '<span class="text-danger">Error: ' + err.toString() + '</span>');
 			
 			$('.btn-connect-wallet i.fa-spin').hide();
 		
@@ -828,6 +980,59 @@ div[data-notify="container"] {
 	};
 	
 
+	const changeNetwork = async (networkName) => {
+		if (!window.ethereum) {
+			notify('alert-danger', '<span class="text-danger">No Metamask (or other Web3 Provider) installed</span>');
+			return;
+		}
+		
+		const network = getObjects(networks, "chain", networkName)[0];
+		
+		try {
+		  await window.ethereum.request({
+			method: 'wallet_switchEthereumChain',
+			params: [{ chainId: web3.utils.toHex(network.chainId) }],
+		  });
+		} catch (e) {
+			var code = e.data.originalError.code
+			if (code === undefined) {
+				code = e.code;
+			}
+			if (code === 4902) {
+				try {
+				  await window.ethereum.request({
+					method: 'wallet_addEthereumChain',
+					params: [
+					  {
+					  	chainName: network.chainName,
+						chainId: web3.utils.toHex(network.chainId),
+						nativeCurrency: {
+						  symbol: network.nativeCurrency.symbol,
+						  decimals: network.nativeCurrency.decimals
+						},
+						rpcUrls: network.rpcUrls,
+						blockExplorerUrls: network.blockExplorerUrls
+					  },
+					],
+				  });
+				} catch (addError) {
+					notify('alert-danger', '<span class="text-danger">' + JSON.stringify(addError) + '</span>');
+					return;
+				}
+		   }
+		}
+	};
+	
+	const fetchABI = async () =>
+	{
+		const d = new Date();
+		const response = await fetch('/contract/Web3Domains.json?t=' + d.getMilliseconds());
+		const result = await response.json();
+		const abi = result.abi;
+		return abi;
+	};
+	
+	
 	var isSetReverse = false;
 	
 	const setReverse = async (domain, isremove) => {
@@ -837,15 +1042,13 @@ div[data-notify="container"] {
 		
 		isSetReverse = true;
 		
-		var tokenId = await contractFirst.genTokenId(domain).call();
-		
-		var func = contractFirst.setReverse(tokenId);
+		var func = contractFirst.methods.setReverse(domain).encodeABI()
 		
 		var title = "Set Reverse";
 		
 		if (isremove == 'true'){
 			title = "Remove Reverse";
-			func = contractFirst.removeReverse();
+			func = contractFirst.methods.removeReverse().encodeABI()
 		}
 		
 		var dialog = bootbox.dialog({
@@ -857,29 +1060,31 @@ div[data-notify="container"] {
 				myDomains(currentAddress,'');
 			} 
 		});
-
-		try {
-			let result = await func.send({
-				callValue: 0,
-				shouldPollResponse:false
-			});
-			if  (result) {
-				var explorer = currentNetwork.blockExplorerUrls[0] + "#/transaction/" + result;
-				dialog.init(function(){
+		
+		web3.eth.sendTransaction({
+				from: currentAddress,
+				to: currentNetwork.contactAddress,
+				value: 0,
+				data: func
+			}, (err, transactionId) => {
+			  if  (err) {
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Transaction failed, ' + err.message + '</p>');
+							isSetReverse = false;
+						}, 2000);
+					});
+				  } else {
+				  
+					var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+					dialog.init(function(){
 						setTimeout(function(){
 							dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your transaction successful<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
 							isSetReverse = false;
 						}, 4000);
-				});
-			}
-		}
-		catch (error) {
-			dialog.init(function(){
-				setTimeout(function(){
-					dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Transaction failed, ' + error + '</p>');
-				}, 2000);
-			});
-		}
+					});
+				 }
+		});
 	}
 	
 	var isRemoveAvatar = false;
@@ -891,7 +1096,7 @@ div[data-notify="container"] {
 		
 		var owner = '';
 		try {
-			owner = await contractFirst.getOwner(domain).call();
+			owner = await contractFirst.methods.getOwner(domain).call();
 		} catch (e) {
 		}
 		
@@ -968,7 +1173,7 @@ div[data-notify="container"] {
 		
 		var owner = '';
 		try {
-			owner = await contractFirst.getOwner(domain).call();
+			owner = await contractFirst.methods.getOwner(domain).call();
 		} catch (e) {
 		}
 		
@@ -998,7 +1203,7 @@ div[data-notify="container"] {
 			url: "/api/nftdomains/setavatar",
 			data: JSON.stringify(objnew),
 			dataType: 'json',
-			success: async function (dt) {  						
+			success: function (dt) {  						
 				if (dt != null) 
 				{
 					var result = dt.result;
@@ -1013,27 +1218,30 @@ div[data-notify="container"] {
 					
 					var avatar = objresult.image;
 					
-					try{
-						const result = await contractFirst.set(key,avatar,tokenId).send({
-							callValue: 0,
-							shouldPollResponse:false
-						});
-						if  (result) {
-							var explorer = currentNetwork.blockExplorerUrls[0] + "#/transaction/" + result;
-							dialog.init(function(){
-									setTimeout(function(){
-											dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your successful Set NFT Avatar<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
-									}, 4000);
-							});
-						}
-					}
-					catch (error) {
-						dialog.init(function(){
-							setTimeout(function(){
-								dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Transaction failed, ' + error + '</p>');
-							}, 2000);
-						});
-					}
+					web3.eth.sendTransaction({
+							from: currentAddress,
+							to: currentNetwork.contactAddress,
+							value: 0,
+							data: contractFirst.methods.set(key,avatar,tokenId).encodeABI()
+						}, (err, transactionId) => {
+						  if  (err) {
+								$('.btn-confirm-avatar i').hide();
+
+								$('.btn-confirm-avatar').attr('disabled', false);
+								
+								bootbox.alert('<p class="text-center mb-0" style="color:red;">Mint failed, ' + err.message + '</p>');
+								
+							  } else {
+							  
+								$('.btn-confirm-avatar i').hide();
+
+								$('.btn-confirm-avatar').attr('disabled', false);
+								
+								var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+								
+								bootbox.alert('<p class="text-center">Congratulations on your successful Set NFT Avatar <br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
+							 }
+					});
 				}
 			}
 		});
@@ -1069,7 +1277,7 @@ div[data-notify="container"] {
 		var tokenId = obj.tokenId;
 		var to = obj.to;
 		var dialog = bootbox.dialog({
-			title: 'Confirm transfer ' + domain,
+			title: 'Comfirm transfer ' + domain,
 			message: '<p class="text-center">Transfer <strong>' + domain + '</strong> to <strong>' + to + '</strong><br/>Please wait while we do something... and do not close the browser.<br/><br/> <i class="fas fa-4x fa-spinner fa-spin"></i></p>',
 			closeButton: true,
 			className: 'modal-custom',
@@ -1079,28 +1287,29 @@ div[data-notify="container"] {
 				$('.btn-transfer-comfirm').attr('disabled', false);
 			}
 		});
-		
-		try{
-			const result = await contractFirst.safeTransferFrom(currentAddress,to,tokenId).send({
-				callValue: 0,
-				shouldPollResponse:false
-			});
-			if  (result) {
-				var explorer = currentNetwork.blockExplorerUrls[0] + "#/transaction/" + result;
-				dialog.init(function(){
+
+		web3.eth.sendTransaction({
+				from: currentAddress,
+				to: currentNetwork.contactAddress,
+				value: 0,
+				data: contractFirst.methods.safeTransferFrom(currentAddress,to,tokenId).encodeABI()
+			}, (err, transactionId) => {
+			  if  (err) {
+					dialog.init(function(){
 						setTimeout(function(){
-								dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your successful purchase<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
+							dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Transaction failed, ' + err.message + '</p>');
+						}, 2000);
+					});
+				  } else {
+				  
+					var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Transfer successful<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
 						}, 4000);
-				});
-			}
-		}
-		catch (error) {
-			dialog.init(function(){
-				setTimeout(function(){
-					dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Transaction failed, ' + error + '</p>');
-				}, 2000);
-			});
-		}
+					});
+				 }
+		});
 	}
 	
 	const transferForm = (obj) => {
@@ -1129,11 +1338,111 @@ div[data-notify="container"] {
 		});
 	}
 	
+	
+	const searchDomain = async (domain) => {
+		var owner = '';
+		
+		var fulldomain = fullDomain(domain, currentNetwork.tld);
+		
+		try {
+			owner = await contractFirst.methods.getOwner(fulldomain).call();
+		} catch (e) {
+			//alert(e.toString());
+		}
+		
+		var status = 'Unavailable';
+		
+		var css = 'text-danger';
+		
+		var isBuy = false;
+		
+		if (owner == '')
+		{
+			status = 'Available';
+			css = 'text-success';
+			isBuy = true;
+		}
+		
+		$('.result-search').removeClass('text-success').removeClass('text-danger').addClass(css).show();
+		
+		$('.result-logo').html('<img src="' + currentNetwork.logo + '"/>');
+		$('.result-domain').text(fulldomain);
+		$('.result-chain').text(currentNetwork.chainName);
+		$('.result-statustext').text(status);
+		
+		$('.result-details').hide();
+			
+		if (isBuy == true)
+		{
+			$('.domainhere').text(fulldomain);
+			
+			var _char = '5+ chars ';
+			
+			var _length =  domain.replace(currentNetwork.tld, '').length;
+			
+			var _price;
+			
+			var _price5char = await contractFirst.methods.getPrice().call();
+			
+			var _price4char = await contractFirst.methods.getPrice4Char().call();
+			
+			var _price3char = await contractFirst.methods.getPrice3Char().call();
+			
+			var _price2char = await contractFirst.methods.getPrice2Char().call();
+			
+			if (_length == 2)
+			{
+				_price = _price2char
+				_char = '2 chars ';
+			}
+			
+			if (_length == 3)
+			{
+				_price = _price3char
+				_char = '3 chars ';
+			}
+			if (_length == 4)
+			{
+				_price = _price4char
+				_char = '4 chars ';
+			}
+			if (_length >= 5)
+			{
+				_price = _price5char;
+			}
+
+			var price = web3.utils.fromWei(_price);
+			
+			var price2char = web3.utils.fromWei(_price2char);
+			
+			var price3char = web3.utils.fromWei(_price3char);
+			
+			var price4char = web3.utils.fromWei(_price4char);
+			
+			var price5char = web3.utils.fromWei(_price5char);
+			
+			//var pricelist = '<ul class="list-group"><li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			var pricelist = '<ul class="list-group">';
+			pricelist += '<li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">3 characters</span><span class="level-price">' + price3char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">4 characters</span><span class="level-price">' + price4char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
+			pricelist += '<li class="level-item"><span class="level-label">5+ characters</span><span class="level-price">' + price5char  + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li></ul>';
+			
+			$('.pricelist').html(pricelist);
+			
+			//$('.result-price').text('Price: ' + price + ' ' + currentNetwork.nativeCurrency.symbol + '/' + _char);
+			
+			$('.result-price').text('Price: ' + price + ' ' + currentNetwork.nativeCurrency.symbol + '');
+			
+			$('.result-details').show();
+		}
+	};
+	
 	const searchDomainTLD = async (domain) => {
 		
 		var isBuy = false;
 		
-		var tlds = [".trx", ".tron", ".usdd"];
+		var tlds = [".btt"];
 		
 		var temp = '';
 		
@@ -1150,7 +1459,7 @@ div[data-notify="container"] {
 			var fulldomain = fullDomain(domain, tld);
 			
 			try {
-				owner = await contractFirst.getOwner(fulldomain).call();
+				owner = await contractFirst.methods.getOwner(fulldomain).call();
 			} catch (e) {
 				//alert(e.toString());
 			}
@@ -1160,9 +1469,9 @@ div[data-notify="container"] {
 			
 			var isBook = false;
 			
-			var isBookingListActive = await contractFirst._isBookingListActive().call();
+			var isBookingListActive = await contractFirst.methods._isBookingListActive().call();
 			if (isBookingListActive == true){
-				var chkInBookingList = await contractFirst.chkInBookingList(domain).call();
+				var chkInBookingList = await contractFirst.methods.chkInBookingList(domain).call();
 				if (chkInBookingList == true)
 				{
 					isBook = true;
@@ -1189,7 +1498,7 @@ div[data-notify="container"] {
 		
 		$('.result-search').show();
 		
-		//$('.result-details').hide();
+		$('.result-details').hide();
 			
 		if (isBuy == true && domainselected !== '' && tldselected !== '')
 		{
@@ -1206,13 +1515,13 @@ div[data-notify="container"] {
 			
 			var _price;
 			
-			var _price5char = await contractFirst.getPrice().call();
+			var _price5char = await contractFirst.methods.getPrice().call();
 			
-			var _price4char = _price5char * 6;
+			var _price4char = await contractFirst.methods.getPrice4Char().call();
 			
-			var _price3char = _price5char * 30;
+			var _price3char = await contractFirst.methods.getPrice3Char().call();
 			
-			var _price2char = _price5char * 200;
+			var _price2char = await contractFirst.methods.getPrice2Char().call();
 			
 			if (_length == 2)
 			{
@@ -1237,17 +1546,17 @@ div[data-notify="container"] {
 			
 			var fulldomain = fullDomain(domain, tld);
 
-			var price = tronWeb.fromSun(_price);
+			var price = web3.utils.fromWei(_price);
 			
-			var price2char = tronWeb.fromSun(_price2char);
+			var price2char = web3.utils.fromWei(_price2char);
 			
-			var price3char = tronWeb.fromSun(_price3char);
+			var price3char = web3.utils.fromWei(_price3char);
 			
-			var price4char = tronWeb.fromSun(_price4char);
+			var price4char = web3.utils.fromWei(_price4char);
 			
-			var price5char = tronWeb.fromSun(_price5char);
+			var price5char = web3.utils.fromWei(_price5char);
 			
-			//var lbldiscount = '<span class="discount" style="color:red; margin-left: 7px;">-30%</span>';
+			var lbldiscount = '<span class="discount" style="color:red; margin-left: 7px;">-30%</span>';
 			
 			//var pricelist = '<ul class="list-group"><li class="level-item"><span class="level-label">2 characters</span><span class="level-price">' + price2char + ' ' + currentNetwork.nativeCurrency.symbol + '</span></li>';
 			var pricelist = '<ul class="list-group">';
@@ -1258,11 +1567,7 @@ div[data-notify="container"] {
 			
 			$('.pricelist').html(pricelist);
 			
-			var currentprice = 'Your domain: ' + fulldomain + '';
-			
-			currentprice += '<br/><span>' + price +  ' ' + currentNetwork.nativeCurrency.symbol + '</span>';
-			
-			$('.result-price').html(currentprice);
+			$('.result-price').html(fulldomain + ' = ' + price + ' ' + currentNetwork.nativeCurrency.symbol + lbldiscount);
 			
 			$('.btn-buy').attr('data-domain', domain).attr('data-tld', tld);
 			
@@ -1292,7 +1597,7 @@ div[data-notify="container"] {
 		var fulldomain = fullDomain(domain, tld);
 		
 		try {
-			owner = await contractFirst.getOwner(fulldomain).call();
+			owner = await contractFirst.methods.getOwner(fulldomain).call();
 		} catch (e) {
 			
 		}
@@ -1302,9 +1607,19 @@ div[data-notify="container"] {
 			return;
 		}
 		
-		var isBookingListActive = await contractFirst._isBookingListActive().call();
+		var isWhiteListActive = await contractFirst.methods.isWhiteListActive().call();
+		if (isWhiteListActive == true){
+			var chkInWhiteList = await contractFirst.methods.chkInWhiteList(currentAddress).call();
+			if (chkInWhiteList == false)
+			{
+				bootbox.alert('Your wallet address is not on the WhiteList.');
+				return;
+			}
+		}
+		
+		var isBookingListActive = await contractFirst.methods._isBookingListActive().call();
 		if (isBookingListActive == true){
-			var chkInBookingList = await contractFirst.chkInBookingList(domain).call();
+			var chkInBookingList = await contractFirst.methods.chkInBookingList(domain).call();
 			if (chkInBookingList == true)
 			{
 				bootbox.alert('This name is already reserved.');
@@ -1312,32 +1627,30 @@ div[data-notify="container"] {
 			}
 		}
 		
-		
+		var _price;
 		
 		var _length =  domain.length;
 		
-		var _price = await contractFirst.getPrice().call();
-		
 		if (_length == 2)
 		{
-			_price = _price * 200;
+			_price = await contractFirst.methods.getPrice2Char().call();
 		}
 		
 		if (_length == 3)
 		{
-			_price = _price * 30;
+			_price = await contractFirst.methods.getPrice3Char().call();
 		}
 
 		if (_length == 4)
 		{
-			_price = _price * 6;
+			_price = await contractFirst.methods.getPrice4Char().call();
 		}
 		if (_length > 4)
 		{
-			_price = _price;
+			_price = await contractFirst.methods.getPrice().call();
 		}
 
-		var price = tronWeb.fromSun(_price)
+		var price = web3.utils.fromWei(_price);
 		
 		var dialog = bootbox.dialog({
 			title: 'Mint your domain',
@@ -1350,41 +1663,42 @@ div[data-notify="container"] {
 		});
 		
 		var tldnodot = tld.replace('.','');
-		try {
-			let result = await contractFirst.buyDomain(domain, tldnodot).send({
-				callValue: tronWeb.toSun(price),
-				shouldPollResponse:false
-			});
-			if  (result) {
-				var explorer = currentNetwork.blockExplorerUrls[0] + "#/transaction/" + result;
-				dialog.init(function(){
-						setTimeout(function(){
-								dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your successful purchase<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
-						}, 4000);
-				});
-				
-				var endpoint = '/api/domains/add2Queue?domain=' + fulldomain + '';
-						
-				$.ajax({
-					type: "GET",
-					url: endpoint,
-					dataType: 'json',
-					success: function (result) {  						
-					}
-				});
-			}
-		}
-		catch (error) {
-			dialog.init(function(){
-				setTimeout(function(){
-					dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Mint failed, ' + error + '</p>');
-				}, 2000);
-			});
-		}
 		
+		web3.eth.sendTransaction({
+				from: currentAddress,
+				to: currentNetwork.contactAddress,
+				value: web3.utils.toWei('' + price + '', 'ether'),
+				data: contractFirst.methods.buyDomain(domain, tldnodot).encodeABI()
+			}, (err, transactionId) => {
+			  if  (err) {
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center mb-0" style="color:red;">Mint failed, ' + err.message + '</p>');
+						}, 2000);
+					});
+				  } else {
+				  
+					var explorer = currentNetwork.blockExplorerUrls[0] + "tx/" + transactionId;
+					dialog.init(function(){
+						setTimeout(function(){
+							dialog.find('.bootbox-body').html('<p class="text-center" style="color:green;">Congratulations on your successful purchase<br/><br/><a class="btn btn-outline-secondary" href="' + explorer + '" target="_blank">View Your Transaction</a></p>');
+						}, 4000);
+						
+						var endpoint = '/api/domains/add2Queue?domain=' + fulldomain + '';
+						
+						$.ajax({
+							type: "GET",
+							url: endpoint,
+							dataType: 'json',
+							success: function (result) {  						
+							}
+						});
+					});
+				 }
+		});
 	};
 	
-	const myDomainLoad = async (address, data, refresh) => {
+	const myDomainLoad = async (address, data) => {
 	
 		$('.mydomain-show').html('');
 		
@@ -1394,9 +1708,9 @@ div[data-notify="container"] {
 
 		for (i = 0; i < data.length; i++) 
 		{
-			var tokenId = await contractFirst.tokenOfOwnerByIndex(address, data[i]).call();
+			var tokenId = await contractFirst.methods.tokenOfOwnerByIndex(address, data[i]).call();
 			try{
-				var domain = await contractFirst._tokenURIs(tokenId).call();
+				var domain = await contractFirst.methods._tokenURIs(tokenId).call();
 				var obj = new Object();
 				obj.owner = address;
 				obj.tokenId = tokenId;
@@ -1426,31 +1740,28 @@ div[data-notify="container"] {
 						btnlbl = "Remove Primary";
 						isremove = "true";
 					}
-					
 					obj.image = image;
-					
-					var temp = "<div class='mydomain-item'><a target='_blank' href='" + image + "'><img style='width: 100%;' src='" + image + "' /></a><div style='cursor:pointer; margin-top: 5px;display:none;' data-obj='" + JSON.stringify(obj) + "'title='Remove NFT Avatar' class='btn btn-remove-avatar'><i class='fas fa-trash-alt'></i></div>";
-					temp += "<div style='cursor:pointer; margin-top: 5px;' data-remove='" + isremove + "' data-domain='" + name + "' class='btn btn-sm btn-outline-success btn-set-reverse'>" + btnlbl + "</div>";
-					temp += "<div style='cursor:pointer; margin-top: 5px;' data-obj='" + JSON.stringify(obj) + "' class='btn btn-sm btn-outline-success btn-set-avatar'>Set Avatar</div>";
-					//temp += "<div style='cursor:pointer; margin-top: 5px;' data-obj='" + JSON.stringify(obj) + "' class='btn btn-sm btn-outline-success btn-send'>Send Domain</div>";
-					temp += "</div>";
+					var temp = "<div class='mydomain-item'><a target='_blank' href='" + image + "'><img style='width: 100%;' src='" + image + "' /></a>";
+					temp += "<div style='cursor:pointer; margin-top: 5px;' data-domain='" + name + "' class='btn btn-sm btn-outline-success btn-set-reverse'>" + btnlbl + "</div>";
+					temp += "<div style='cursor:pointer; margin-top: 5px; display:none;' data-obj='" + JSON.stringify(obj) + "' class='btn btn-sm btn-outline-success btn-set-avatar'>Set Avatar</div>";
+					temp += "<div style='cursor:pointer; margin-top: 5px;' data-obj='" + JSON.stringify(obj) + "' class='btn btn-sm btn-outline-success btn-send'>Send Domain</div>";
 					$('.mydomain-show').append(temp);
 				});
 			});
 		}
 	};
 
-	const myDomains = async (address, refresh) => {
+	const myDomains = async (address) => {
 	
 		$('.warp-mydomains').show();
 		
 		$('.mydomain-show').html('');
 		
-		var balance = await contractFirst.balanceOf(address).call();
+		var balance = await contractFirst.methods.balanceOf(address).call();
 		
-		$('.total-domains').html(balance.toString());
+		$('.total-domains').html(balance);
 		
-		var pageSize = 20;
+		var pageSize = 15;
 		var totalNumber = balance;
 		var dataSource = [];
 		for (i = 0; i < balance; i++) {
@@ -1467,7 +1778,7 @@ div[data-notify="container"] {
 			showGoInput: true,
 			showGoButton: true,
 			callback: function(data, pagination) {
-				myDomainLoad(address, data, refresh);
+				myDomainLoad(address, data);
 			}
 		});
 	};
@@ -1721,7 +2032,7 @@ div[data-notify="container"] {
 					return;
 				}
 				
-				var isAddress = tronWeb.isAddress(toAddress);
+				var isAddress = web3.utils.isAddress(toAddress);
 			
 				
 				if (isAddress == false){
@@ -1757,12 +2068,12 @@ div[data-notify="container"] {
 				
 				$('.btn-transfer-comfirm').attr('disabled', true);
 				
-				var isAddress = tronWeb.isAddress(to);
+				var isAddress = web3.utils.isAddress(to);
 				if (isAddress == true){
 					$('.to_hidden_address').val(to);
 					try{
 						var owner = to;
-						var domain = await contractFirst.reverseOf(owner).call();
+						var domain = await contractFirst.methods.reverseOf(owner).call();
 						var ethavatar = "<div class='ethavatar' style='width: 35px; float:left; margin: 5px;'>" + multiavatar(domain) + "</div>";
 						var ownerinfo = "<div class='ownerinfo'><div class='strong' style='color: green;'>" + domain + "</div><div class='small'>" +  owner + "</div></div>";
 						var lblowner = ethavatar + ownerinfo;
@@ -1774,8 +2085,7 @@ div[data-notify="container"] {
 				if (isAddress == false){
 					try{
 						var domain = to;
-						var owner = await contractFirst.getOwner(domain).call();
-						owner = tronWeb.address.fromHex(owner);
+						var owner = await contractFirst.methods.getOwner(domain).call();
 						$('.to_hidden_address').val(owner);
 						var ethavatar = "<div class='ethavatar' style='width: 35px; float:left; margin: 5px;'>" + multiavatar(domain) + "</div>";
 						var ownerinfo = "<div class='ownerinfo'><div class='strong' style='color: green;'>" + domain + "</div><div class='small'>" +  owner + "</div></div>";
@@ -1822,7 +2132,22 @@ div[data-notify="container"] {
 	
 	function fixDomain(domain)
 	{
+		//const emojiRegex = /\p{Emoji}/u;
+		//const regexExp = /(?:[#*0-9]\uFE0F?\u20E3|[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23ED-\u23EF\u23F1\u23F2\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB\u25FC\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692\u2694-\u2697\u2699\u269B\u269C\u26A0\u26A7\u26AA\u26B0\u26B1\u26BD\u26BE\u26C4\u26C8\u26CF\u26D1\u26D3\u26E9\u26F0-\u26F5\u26F7\u26F8\u26FA\u2702\u2708\u2709\u270F\u2712\u2714\u2716\u271D\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u27A1\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B55\u3030\u303D\u3297\u3299]\uFE0F?|[\u261D\u270C\u270D](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\u270A\u270B](?:\uD83C[\uDFFB-\uDFFF])?|[\u23E9-\u23EC\u23F0\u23F3\u25FD\u2693\u26A1\u26AB\u26C5\u26CE\u26D4\u26EA\u26FD\u2705\u2728\u274C\u274E\u2753-\u2755\u2795-\u2797\u27B0\u27BF\u2B50]|\u26F9(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\u2764\uFE0F?(?:\u200D(?:\uD83D\uDD25|\uD83E\uDE79))?|\uD83C(?:[\uDC04\uDD70\uDD71\uDD7E\uDD7F\uDE02\uDE37\uDF21\uDF24-\uDF2C\uDF36\uDF7D\uDF96\uDF97\uDF99-\uDF9B\uDF9E\uDF9F\uDFCD\uDFCE\uDFD4-\uDFDF\uDFF5\uDFF7]\uFE0F?|[\uDF85\uDFC2\uDFC7](?:\uD83C[\uDFFB-\uDFFF])?|[\uDFC3\uDFC4\uDFCA](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDFCB\uDFCC](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDCCF\uDD8E\uDD91-\uDD9A\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF7C\uDF7E-\uDF84\uDF86-\uDF93\uDFA0-\uDFC1\uDFC5\uDFC6\uDFC8\uDFC9\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF8-\uDFFF]|\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF]|\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uDDF4\uD83C\uDDF2|\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uDDF6\uD83C\uDDE6|\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF]|\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uDDFC\uD83C[\uDDEB\uDDF8]|\uDDFD\uD83C\uDDF0|\uDDFE\uD83C[\uDDEA\uDDF9]|\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uDFF3\uFE0F?(?:\u200D(?:\u26A7\uFE0F?|\uD83C\uDF08))?|\uDFF4(?:\u200D\u2620\uFE0F?|\uDB40\uDC67\uDB40\uDC62\uDB40(?:\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDC73\uDB40\uDC63\uDB40\uDC74|\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F)?)|\uD83D(?:[\uDC3F\uDCFD\uDD49\uDD4A\uDD6F\uDD70\uDD73\uDD76-\uDD79\uDD87\uDD8A-\uDD8D\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA\uDECB\uDECD-\uDECF\uDEE0-\uDEE5\uDEE9\uDEF0\uDEF3]\uFE0F?|[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDC8F\uDC91\uDCAA\uDD7A\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC](?:\uD83C[\uDFFB-\uDFFF])?|[\uDC6E\uDC70\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD74\uDD90](?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?|[\uDC00-\uDC07\uDC09-\uDC14\uDC16-\uDC3A\uDC3C-\uDC3E\uDC40\uDC44\uDC45\uDC51-\uDC65\uDC6A\uDC79-\uDC7B\uDC7D-\uDC80\uDC84\uDC88-\uDC8E\uDC90\uDC92-\uDCA9\uDCAB-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDDA4\uDDFB-\uDE2D\uDE2F-\uDE34\uDE37-\uDE44\uDE48-\uDE4A\uDE80-\uDEA2\uDEA4-\uDEB3\uDEB7-\uDEBF\uDEC1-\uDEC5\uDED0-\uDED2\uDED5-\uDED7\uDEDD-\uDEDF\uDEEB\uDEEC\uDEF4-\uDEFC\uDFE0-\uDFEB\uDFF0]|\uDC08(?:\u200D\u2B1B)?|\uDC15(?:\u200D\uD83E\uDDBA)?|\uDC3B(?:\u200D\u2744\uFE0F?)?|\uDC41\uFE0F?(?:\u200D\uD83D\uDDE8\uFE0F?)?|\uDC68(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDC68\uDC69]\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?)|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?\uDC68\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D\uDC68\uD83C[\uDFFB-\uDFFE])))?))?|\uDC69(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:\uDC8B\u200D\uD83D)?[\uDC68\uDC69]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D(?:[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?|\uDC69\u200D\uD83D(?:\uDC66(?:\u200D\uD83D\uDC66)?|\uDC67(?:\u200D\uD83D[\uDC66\uDC67])?))|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFC-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFD-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFD\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D\uD83D(?:[\uDC68\uDC69]|\uDC8B\u200D\uD83D[\uDC68\uDC69])\uD83C[\uDFFB-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83D[\uDC68\uDC69]\uD83C[\uDFFB-\uDFFE])))?))?|\uDC6F(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDD75(?:\uFE0F|\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|\uDE2E(?:\u200D\uD83D\uDCA8)?|\uDE35(?:\u200D\uD83D\uDCAB)?|\uDE36(?:\u200D\uD83C\uDF2B\uFE0F?)?)|\uD83E(?:[\uDD0C\uDD0F\uDD18-\uDD1F\uDD30-\uDD34\uDD36\uDD77\uDDB5\uDDB6\uDDBB\uDDD2\uDDD3\uDDD5\uDEC3-\uDEC5\uDEF0\uDEF2-\uDEF6](?:\uD83C[\uDFFB-\uDFFF])?|[\uDD26\uDD35\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD4\uDDD6-\uDDDD](?:\uD83C[\uDFFB-\uDFFF])?(?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDDDE\uDDDF](?:\u200D[\u2640\u2642]\uFE0F?)?|[\uDD0D\uDD0E\uDD10-\uDD17\uDD20-\uDD25\uDD27-\uDD2F\uDD3A\uDD3F-\uDD45\uDD47-\uDD76\uDD78-\uDDB4\uDDB7\uDDBA\uDDBC-\uDDCC\uDDD0\uDDE0-\uDDFF\uDE70-\uDE74\uDE78-\uDE7C\uDE80-\uDE86\uDE90-\uDEAC\uDEB0-\uDEBA\uDEC0-\uDEC2\uDED0-\uDED9\uDEE0-\uDEE7]|\uDD3C(?:\u200D[\u2640\u2642]\uFE0F?|\uD83C[\uDFFB-\uDFFF])?|\uDDD1(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83E\uDDD1))|\uD83C(?:\uDFFB(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFC-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFC(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFD-\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFD(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFE(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFD\uDFFF]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?|\uDFFF(?:\u200D(?:[\u2695\u2696\u2708]\uFE0F?|\u2764\uFE0F?\u200D(?:\uD83D\uDC8B\u200D)?\uD83E\uDDD1\uD83C[\uDFFB-\uDFFE]|\uD83C[\uDF3E\uDF73\uDF7C\uDF84\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E(?:[\uDDAF-\uDDB3\uDDBC\uDDBD]|\uDD1D\u200D\uD83E\uDDD1\uD83C[\uDFFB-\uDFFF])))?))?|\uDEF1(?:\uD83C(?:\uDFFB(?:\u200D\uD83E\uDEF2\uD83C[\uDFFC-\uDFFF])?|\uDFFC(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFD-\uDFFF])?|\uDFFD(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])?|\uDFFE(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFD\uDFFF])?|\uDFFF(?:\u200D\uD83E\uDEF2\uD83C[\uDFFB-\uDFFE])?))?))/g;
+		//var domainfix_new = '';
+		//for (var i = 0; i < domain.length; i++) {
+		//	var _char = domain[i];
+		//	var isEmoji = regexExp.test(_char); 
+			//alert(isEmoji + _char);
+		//	if(isEmoji == false){
+		//		_char = _char.replace(/\./g, '').replace(/\s+/g, '').replace(/[^A-Za-z0-9\-]/gi, '').replace(/,/g, '');
+		//	}else{
+		//		alert(_char);
+		//	}
+		//	domainfix_new += _char;
+		//}
 		const domainfix = domain.replace(/\./g, '').replace(/\s+/g, '').replace(/[`~!@#$%^&*()|+\=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/,/g, '');
+		//const domainfix = domainfix_new;
 		return domainfix;
 	}
 </script>

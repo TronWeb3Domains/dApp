@@ -14,12 +14,36 @@
 <script type="text/javascript" src="/networks.js?v=1"></script>
 <script type="text/javascript">
 	$(function(){
+		var bg = '/NFTDomains/bg.png';
 		var domain = decodeURIComponent(getUrlParameter('domain'));
 		var avatar = decodeURIComponent(getUrlParameter('avatar'));
 		var outfile = decodeURIComponent(getUrlParameter('outfile'));
+		var bgnew = decodeURIComponent(getUrlParameter('bg'));
+		var color1 = decodeURIComponent(getUrlParameter('color1'));
+		var color2 = decodeURIComponent(getUrlParameter('color2'));
 		
 		$('.domainhere').text(domain);
 		
+		if(color1 !=='' && color2 !==''){
+			var bgcolor = 'linear-gradient(45deg, #' + color1 + ', #' + color2 + ')';
+			alert(bgcolor);
+			$('.preview').css('background-image', bgcolor);
+		};
+		
+		if (bgnew !== '' && bgnew !== bg){
+			var newImg = new Image;
+			newImg.onload = function() {
+				$('.avatar').attr('src', this.src);
+				setTimeout(function(){
+					saveAvatar();
+				}, 1000);
+			}
+			newImg.src = bgnew;
+			//return;
+		}
+		
+		
+
 		if (avatar !== ''){
 			var newImg = new Image;
 			newImg.onload = function() {
